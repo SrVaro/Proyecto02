@@ -7,7 +7,7 @@ import org.springframework.stereotype.Repository;
 
 
 @Repository
-public class ProfileServiceImpl {
+public class ProfileServiceImpl implements ProfileService{
 
 	private static final Logger logger = LoggerFactory.getLogger(ProfileServiceImpl.class);
 
