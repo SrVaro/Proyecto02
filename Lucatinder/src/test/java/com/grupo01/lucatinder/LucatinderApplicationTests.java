@@ -1,4 +1,4 @@
-package com.grupo01.demo;
+package com.grupo01.lucatinder;
 
 import org.junit.Test;
 import org.junit.runner.RunWith;
