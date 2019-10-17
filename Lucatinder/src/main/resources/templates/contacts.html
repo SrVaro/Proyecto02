@@ -8,7 +8,7 @@
 
 <body>
 
-    <div align= "center" th:each="profiles : ${profilesList}" class="card" style="width: 2rem;">
+    <div align= "center" th:each="profile : ${listContact}" class="card" style="width: 2rem;">
         <img src="Imagen/serveimage.jpg" class="card-img-top" alt="...">
         <div class="card-body">
             <h5 class="card-title" th:text="${profile.name}">Nombre:</h5>

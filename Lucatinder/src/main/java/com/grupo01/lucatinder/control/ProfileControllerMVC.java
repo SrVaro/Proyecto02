@@ -1,12 +1,15 @@
 package com.grupo01.lucatinder.control;
 
+import java.util.List;
+import javax.servlet.http.HttpServletRequest;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
-import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import com.grupo01.lucatinder.services.ProfileService;
+import org.springframework.ui.Model;
 import org.springframework.ui.ModelMap;
 import org.springframework.web.bind.annotation.GetMapping;
 import com.grupo01.lucatinder.models.Profile;
@@ -29,19 +32,37 @@ public class ProfileControllerMVC {
 
 	}
 
+	@RequestMapping("/")
+	String index() {
+		return "index";
+	}
+
+	/**
+	 * @author AL
+	 * @param name
+	 * @return login.html
+	 * @throws Exception
+	 */
+	@GetMapping("/login")
+	String loginTemplate(Model model) {
+		logger.info("-- Comprobando si el usuario existe --");
+		model.addAttribute("profile", new Profile());
+		return "login";
+	}
+
 	/**
 	 * @author AL
 	 * @param name
 	 * @return home.html
 	 * @throws Exception
 	 */
-	@RequestMapping("/login/{name}")
-	String loginProfile(@PathVariable String name) throws Exception {
+	@PostMapping("/login")
+	String loginProfile(@ModelAttribute Profile profile) throws Exception {
 		logger.info("-- Comprobando si el usuario existe --");
 		String link = "index";
-		Profile p = profileServ.getProfile(name).get();
+		Profile p = profileServ.getProfile(profile.getName()).get();
 		if (p != null) {
-			link = "home";
+			link = "redirect:/mvc/profile/home";
 			this.actualUserID = p.getId_profile();
 		}
 		return link;
@@ -74,18 +95,18 @@ public class ProfileControllerMVC {
 	@RequestMapping(value = "/save", method = RequestMethod.POST)
 	public String save(@ModelAttribute Profile profile) {
 		logger.info("-- en SAVE");
-		profileServ.addProfile(profile);
-		return "redirect:/index";
+		this.actualUserID = profileServ.addProfile(profile).getId_profile();
+		return "redirect:/mvc/profile/home";
 	}
 
 	/**
 	 * @author AR
 	 * @return home.html
 	 */
-	@RequestMapping(value = "like/{id}", method = RequestMethod.GET)
-	public String likeProfile(@PathVariable int id) {
+	@RequestMapping(value = "/like", method = RequestMethod.GET)
+	public String likeProfile(HttpServletRequest request) {
 		logger.info("-- en LIKE");
-		profileServ.likeProfile(actualUserID, id);
+		profileServ.likeProfile(actualUserID, Integer.parseInt(request.getParameter("id")));
 		return "redirect:/mvc/profile/home";
 	}
 
@@ -94,11 +115,25 @@ public class ProfileControllerMVC {
 	 * @param dislike
 	 * @return home.html
 	 */
-	@RequestMapping(value = "/dislike/id", method = RequestMethod.GET)
-	public String dislikeProfile(@PathVariable int id) {
+	@RequestMapping(value = "/dislike", method = RequestMethod.GET)
+	public String dislikeProfile(HttpServletRequest request) {
 		logger.info("-- en DISLIKE");
-		profileServ.dislikeProfile(actualUserID, id);
-		return "redirect:/home";
+		profileServ.dislikeProfile(actualUserID, Integer.parseInt(request.getParameter("id")));
+		return "redirect:/mvc/profile/home";
 
+	}
+
+	/**
+	 * @author MC
+	 * @param model
+	 * @return contacts.html
+	 * @throws Exception
+	 */
+
+	@RequestMapping(value = "/contacts", method = RequestMethod.GET)
+	public String getContactList(Model model) throws Exception {
+		List<Profile> listcontact = profileServ.getContactList(actualUserID);
+		model.addAttribute("listContact", listcontact);
+		return "contacts";
 	}
 }
