@@ -1,13 +1,28 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
-<meta charset="UTF-8">
-<title></title>
+    <meta charset="UTF-8">
+    <title>HOME</title>
 </head>
+
 <body>
 
-
-	
+    <div align= "center" th:each="profiles : ${profilesList}" class="card" style="width: 2rem;">
+        <img src="Imagen/serveimage.jpg" class="card-img-top" alt="...">
+        <div class="card-body">
+            <h5 class="card-title" th:text="${profile.name}">Nombre:</h5>
+            <ul class="list-group list-group-flush">
+                <li class="age" th:text="${profile.age}">Edad:</li>
+                <li class="gender" th:text="${profile.gender}">Género:</li>
+            </ul>
+            <div class="card-body">
+                <button type="button" class="like">LIKE</button>
+                <button type="button" class="dislike">DISLIKE</button>
+            </div>
+        </div>
+    </div>
 
 </body>
+
 </html>
