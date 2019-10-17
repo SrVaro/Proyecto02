@@ -5,9 +5,22 @@
 <title></title>
 </head>
 <body>
-
-
-	
-
+	<div align="center">
+		<h1>INICIO DE SESIÓN</h1>
+		<table>
+			<form action="#" th:action="loginprofile" th:object="${profile}" method="post">
+				<tr>
+					<td>Nombre de usuario:</td>
+					<td><input type="text" th:field="${profile.name}" /> </td>
+				</tr>
+				<tr>
+					<td colspan="2" align="center"><input type="submit"
+						value="Acceder" /></td>
+				</tr>
+				
+			</form>
+        </table>
+        <p colspan="2" align="center"> <a th:href="profileForm">Registrarse ahora</a></p>
+    </div>
 </body>
 </html>
