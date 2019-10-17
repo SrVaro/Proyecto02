@@ -12,6 +12,8 @@ import com.grupo01.lucatinder.services.ProfileService;
 import org.springframework.ui.ModelMap;
 import org.springframework.web.bind.annotation.GetMapping;
 import com.grupo01.lucatinder.models.Profile;
+
+
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMethod;
 
@@ -23,6 +25,9 @@ public class ProfileControllerMVC {
 	private static final Logger logger = LoggerFactory.getLogger(ProfileControllerMVC.class);
 
 	private int actualUserID;
+	
+	
+	
 
 	@Autowired
 	private ProfileService profileServ;
@@ -72,5 +77,18 @@ public class ProfileControllerMVC {
 		profileServ.addProfile(profile);
 		return "redirect:/index";
 	}
-	
+	@RequestMapping(value = "/prueba", method = RequestMethod.POST)
+	public String prueba(@ModelAttribute Profile profile) {
+		logger.info("-- en prueba");
+		/*
+		List <Profile> x =profileServ.getProfileSelection(1);
+		for (Profile a:x) {
+			System.out.println(a.getName());
+		}
+		 */
+		//d.likeProfile(2, 3);
+		return "index";
+		
+		
+	}
 }

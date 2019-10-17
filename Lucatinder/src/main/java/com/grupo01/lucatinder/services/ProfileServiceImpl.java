@@ -35,4 +35,5 @@ public class ProfileServiceImpl implements ProfileService {
 	public List<Profile> getProfileSelection(int actualUserId) {
 		return profileRep.getProfileSelection(actualUserId);
 	}
+	
 }

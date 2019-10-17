@@ -5,6 +5,8 @@ import java.util.Optional;
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
 import org.springframework.stereotype.Repository;
+import org.springframework.transaction.annotation.Transactional;
+
 import com.grupo01.lucatinder.models.Profile;
 
 /**
@@ -35,6 +37,18 @@ public class ProfileRepositoryCustomImpl implements ProfileRepositoryCustom {
 
 		String hql = "FROM Profile WhERE id_profile <> '" + actualUserId + "'";
 		return (List<Profile>) em.createQuery(hql).getResultList();
+
+	}
+	/**
+	 * @author MC
+	 * @param actualUserId
+	 * @param likedUserId
+	 */
+	@Transactional
+	public void likeProfile(int actualUserId, int likedUserId) {
+		
+		String sql="INSERT INTO contacts(id_profile, id_profile_liked) VALUES (actualUserID,likedUserId)";
+				em.createNativeQuery(sql);
 
 	}
 }
