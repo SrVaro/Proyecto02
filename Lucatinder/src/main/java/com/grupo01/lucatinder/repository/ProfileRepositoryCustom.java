@@ -16,4 +16,6 @@ public interface ProfileRepositoryCustom {
 	public List<Profile> getProfileSelection(int actualUserId);
 
 	public boolean likeProfile(int actualUserId, int likedUserId);
+	
+	public boolean dislikeProfile(int actualUserId, int dislikedUserId);
 }

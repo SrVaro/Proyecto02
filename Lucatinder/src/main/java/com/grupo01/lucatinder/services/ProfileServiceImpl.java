@@ -41,7 +41,11 @@ public class ProfileServiceImpl implements ProfileService {
 
 	@Override
 	public boolean likeProfile(int actualUserId, int likedUserId) {
-		// return profileRep.likeProfile(int actualUserId, int likedUserId);
-		return false;
+		return profileRep.likeProfile(actualUserId, likedUserId);
+	}
+
+	@Override
+	public boolean dislikeProfile(int actualUserID, int dislikedUserId) {
+		return profileRep.dislikeProfile(actualUserID, dislikedUserId);
 	}
 }
