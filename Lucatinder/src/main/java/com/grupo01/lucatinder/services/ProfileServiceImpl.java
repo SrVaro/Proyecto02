@@ -5,6 +5,7 @@ import org.slf4j.LoggerFactory;
 import org.springframework.stereotype.Repository;
 
 import com.grupo01.lucatinder.models.Profile;
+import com.grupo01.lucatinder.repository.ProfileRepository;
 
 
 
@@ -12,6 +13,8 @@ import com.grupo01.lucatinder.models.Profile;
 public class ProfileServiceImpl implements ProfileService{
 
 	private static final Logger logger = LoggerFactory.getLogger(ProfileServiceImpl.class);
+	
+	private ProfileRepository profileRep;
 
 	ProfileServiceImpl() {
 
@@ -19,8 +22,7 @@ public class ProfileServiceImpl implements ProfileService{
 
 	@Override
 	public void addProfile(Profile p) {
-		// TODO Auto-generated method stub
-		
+		profileRep.save(p);
 	}
 
 }
