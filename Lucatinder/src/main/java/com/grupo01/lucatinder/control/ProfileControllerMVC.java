@@ -1,12 +1,11 @@
 package com.grupo01.lucatinder.control;
 
+import java.util.List;
 import javax.servlet.http.HttpServletRequest;
-
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
-import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import com.grupo01.lucatinder.services.ProfileService;
@@ -122,5 +121,20 @@ public class ProfileControllerMVC {
 		profileServ.dislikeProfile(actualUserID, Integer.parseInt(request.getParameter("id")));
 		return "redirect:/mvc/profile/home";
 
+	}
+
+	/**
+	 * @author MC
+	 * @param model
+	 * @return contacts.html
+	 * @throws Exception
+	 */
+
+	@RequestMapping(value = "/contacts", method = RequestMethod.GET)
+
+	public String getContactList(Model model) throws Exception {
+		List<Profile> listcontact = profileServ.getContactList(actualUserID);
+		model.addAttribute("listcontact", listcontact);
+		return "contacts";
 	}
 }

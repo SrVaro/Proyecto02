@@ -82,13 +82,12 @@ public class ProfileRepositoryCustomImpl implements ProfileRepositoryCustom {
 	 * @author MJ
 	 */
 	@Override
-	@Transactional
 	public boolean dislikeProfile(int actualUserId, int dislikedUserId) {
 
 		boolean sucess = false;
 		int n;
 
-		String hql = "INSERT INTO discards(id_profile, id_profile_disliked) VALUES (?, ?)";
+		String hql = "INSERT INTO discards(id_discard, id_profile, id_profile_disliked) VALUES (?, ?)";
 		n = em.createNativeQuery(hql).setParameter(1, actualUserId).setParameter(2, dislikedUserId).executeUpdate();
 
 		if (n > 0)
@@ -108,9 +107,11 @@ public class ProfileRepositoryCustomImpl implements ProfileRepositoryCustom {
 		String sql = "INSERT INTO contacts(id_profile, id_profile_liked) VALUES (?,?)";
 
 		n = em.createNativeQuery(sql).setParameter(1, actualUserId).setParameter(2, likedUserId).executeUpdate();
+
 		if (n > 0)
 			sucess = true;
 
 		return sucess;
 	}
+
 }
