@@ -47,4 +47,10 @@ public class ProfileRepositoryCustomImpl implements ProfileRepositoryCustom {
 		return em.createNativeQuery(hql).setParameter(1, actualUserId).getResultList();
 
 	}
+
+	@Override
+	public boolean likeProfile(int actualUserId, int likedUserId) {
+		// TODO Auto-generated method stub
+		return false;
+	}
 }

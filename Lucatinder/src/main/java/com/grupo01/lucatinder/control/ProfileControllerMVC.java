@@ -82,15 +82,25 @@ public class ProfileControllerMVC {
 	}
 
 	/**
-	 * 
 	 * @author AR
 	 * @return home.html
 	 */
-
 	@RequestMapping(value = "like/{id}", method = RequestMethod.GET)
 	public String likeProfile(@PathVariable int id) {
 		logger.info("-- en LIKE");
-		//profileServ.likeProfile(actualUserID, id);
+		profileServ.likeProfile(actualUserID, id);
 		return "redirect:/mvc/profile/home";
+	}
+
+	/**
+	 * @author MJ
+	 * @param dislike
+	 * @return home.html
+	 */
+	@RequestMapping(value = "/dislike/id", method = RequestMethod.GET)
+	public String dislikeProfile(@PathVariable int id) {
+		logger.info("-- en DISLIKE");
+		// profileServ.dislikeProfile(actualUserID, id);
+		return "redirect:/home";
 	}
 }
