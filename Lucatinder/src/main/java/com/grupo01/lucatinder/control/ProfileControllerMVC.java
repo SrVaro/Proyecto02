@@ -12,6 +12,7 @@ import org.springframework.web.bind.annotation.GetMapping;
 import com.grupo01.lucatinder.models.Profile;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.RequestParam;
 
 @Controller("ControllerMVC")
 
@@ -69,5 +70,18 @@ public class ProfileControllerMVC {
 		logger.info("-- en SAVE");
 		profileServ.addProfile(profile);
 		return "redirect:/index";
+	}
+	
+	/**
+	 * @author MJ
+	 * @param dislike
+	 * @return home.html
+	 */
+	
+	@RequestMapping(value="/dislike/id", method = RequestMethod.GET)
+	public String dislikeProfile(@PathVariable int id) {
+		logger.info("-- en DISLIKE");
+		profileServ.dislikeProfile(actualUserID, id);
+		return "redirect:/home";	
 	}
 }
