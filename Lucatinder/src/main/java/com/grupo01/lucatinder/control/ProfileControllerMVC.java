@@ -1,5 +1,7 @@
 package com.grupo01.lucatinder.control;
 
+import java.util.List;
+
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -38,9 +40,13 @@ public class ProfileControllerMVC {
 	@RequestMapping("/login/{name}")
 	String loginProfile(@PathVariable String name) throws Exception {
 		logger.info("-- Comprobando si el usuario existe --");
-		// List<Kitty> listKitty = kittyService.list();
-		// model.addAttribute("kittyList", listKitty);
-		return "home";
+		String link = "index";
+		Profile p = profileServ.getProfile(name).get();
+		if (p != null) {
+			link = "home";
+			this.actualUserID = p.getId_profile();
+		}
+		return link;
 	}
 
 	/**
@@ -50,7 +56,7 @@ public class ProfileControllerMVC {
 	 */
 	@GetMapping("/new")
 	public String addProfile(ModelMap model) {
-		logger.info("-- en NEW");
+		logger.info("-- Creando un nuevo usuario --");
 		model.addAttribute("profile", new Profile());
 		return "profileForm";
 	}
@@ -66,4 +72,5 @@ public class ProfileControllerMVC {
 		profileServ.addProfile(profile);
 		return "redirect:/index";
 	}
+	
 }

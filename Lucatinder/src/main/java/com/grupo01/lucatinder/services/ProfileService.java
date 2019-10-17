@@ -1,5 +1,8 @@
 package com.grupo01.lucatinder.services;
 
+import java.util.Optional;
+import java.util.List;
+
 /**
  * @author MJ
  * 
@@ -8,9 +11,12 @@ package com.grupo01.lucatinder.services;
 
 import com.grupo01.lucatinder.models.Profile;
 
-public interface ProfileService {	
+public interface ProfileService {
 
 	public Profile addProfile(Profile p);
-	
-	public Profile getProfile(String name);
+
+	public Optional<Profile> getProfile(String name);
+
+	public List<Profile> getProfileSelection(int actualUserId);
+
 }
