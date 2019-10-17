@@ -131,10 +131,9 @@ public class ProfileControllerMVC {
 	 */
 
 	@RequestMapping(value = "/contacts", method = RequestMethod.GET)
-
 	public String getContactList(Model model) throws Exception {
 		List<Profile> listcontact = profileServ.getContactList(actualUserID);
-		model.addAttribute("listcontact", listcontact);
+		model.addAttribute("listContact", listcontact);
 		return "contacts";
 	}
 }
