@@ -21,6 +21,11 @@ public interface ProfileService {
 
 	public boolean likeProfile(int actualUserId, int likedUserId);
 
+
 	public List<Profile> getContactList(int actualUserId);
+
+	public boolean dislikeProfile(int actualUserID, int dislikedUserId);
+
+
 
 }

@@ -15,11 +15,8 @@ import org.springframework.ui.ModelMap;
 import org.springframework.web.bind.annotation.GetMapping;
 
 import com.grupo01.lucatinder.models.Profile;
-
-
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMethod;
-import org.springframework.web.bind.annotation.RequestParam;
 
 @Controller("ControllerMVC")
 
@@ -29,9 +26,6 @@ public class ProfileControllerMVC {
 	private static final Logger logger = LoggerFactory.getLogger(ProfileControllerMVC.class);
 
 	private int actualUserID;
-	
-	
-	
 
 	@Autowired
 	private ProfileService profileServ;
@@ -60,7 +54,7 @@ public class ProfileControllerMVC {
 
 	@RequestMapping("/home")
 	public String getProfileSelection(ModelMap model) throws Exception {
-		logger.info("-- en Listado");
+		logger.info("-- en HOME --");
 		model.addAttribute("profilesList", profileServ.getProfileSelection(actualUserID));
 		return "home";
 	}
@@ -89,8 +83,6 @@ public class ProfileControllerMVC {
 		return "redirect:/index";
 	}
 
-
-
 	/**
 	 * @author AR
 	 * @return home.html
@@ -110,7 +102,7 @@ public class ProfileControllerMVC {
 	@RequestMapping(value = "/dislike/id", method = RequestMethod.GET)
 	public String dislikeProfile(@PathVariable int id) {
 		logger.info("-- en DISLIKE");
-		// profileServ.dislikeProfile(actualUserID, id);
+		profileServ.dislikeProfile(actualUserID, id);
 		return "redirect:/home";
 
 	}
@@ -123,6 +115,7 @@ public class ProfileControllerMVC {
 	 */
 	
 	@RequestMapping(value = "/contacts", method = RequestMethod.GET)
+	
 	public String getContactList(Model model ) throws Exception{
 			
 		List<Profile> listcontact = profileServ.getContactList(actualUserID);

@@ -12,6 +12,7 @@ import com.grupo01.lucatinder.repository.ProfileRepository;
 @Repository
 public class ProfileServiceImpl implements ProfileService {
 
+	@SuppressWarnings("unused")
 	private static final Logger logger = LoggerFactory.getLogger(ProfileServiceImpl.class);
 
 	@Autowired
@@ -39,10 +40,19 @@ public class ProfileServiceImpl implements ProfileService {
 		return profileRep.getProfileSelection(actualUserId);
 	}
 
-
 	@Override
 	public boolean likeProfile(int actualUserId, int likedUserId) {
 		return profileRep.likeProfile(actualUserId, likedUserId);
+	}
+
+	@Override
+	public boolean dislikeProfile(int actualUserID, int dislikedUserId) {
+		return profileRep.dislikeProfile(actualUserID, dislikedUserId);
+	}
+
+	@Override
+	public List<Profile> getContactList(int actualUserId) {
+		return profileRep.getContactList(actualUserId);
 	}
 
 }
