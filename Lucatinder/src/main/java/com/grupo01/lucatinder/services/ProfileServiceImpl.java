@@ -38,4 +38,10 @@ public class ProfileServiceImpl implements ProfileService {
 	public List<Profile> getProfileSelection(int actualUserId) {
 		return profileRep.getProfileSelection(actualUserId);
 	}
+
+	@Override
+	public boolean likeProfile(int actualUserId, int likedUserId) {
+		//return profileRep.likeProfile(int actualUserId, int likedUserId);
+		return false;
+	}
 }

@@ -14,6 +14,7 @@ import org.springframework.web.bind.annotation.GetMapping;
 import com.grupo01.lucatinder.models.Profile;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.RequestParam;
 
 @Controller("ControllerMVC")
 
@@ -49,6 +50,13 @@ public class ProfileControllerMVC {
 		return link;
 	}
 
+	@RequestMapping("/home")
+	public String getProfileSelection(ModelMap model) throws Exception {
+		logger.info("-- en Listado");
+		model.addAttribute("profilesList", profileServ.getProfileSelection(actualUserID));
+		return "home";
+	}
+
 	/**
 	 * 
 	 * @author AR
@@ -72,5 +80,17 @@ public class ProfileControllerMVC {
 		profileServ.addProfile(profile);
 		return "redirect:/index";
 	}
-	
+
+	/**
+	 * 
+	 * @author AR
+	 * @return home.html
+	 */
+
+	@RequestMapping(value = "like/{id}", method = RequestMethod.GET)
+	public String likeProfile(@PathVariable int id) {
+		logger.info("-- en LIKE");
+		//profileServ.likeProfile(actualUserID, id);
+		return "redirect:/mvc/profile/home";
+	}
 }

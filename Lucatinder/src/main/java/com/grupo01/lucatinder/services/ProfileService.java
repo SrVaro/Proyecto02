@@ -18,5 +18,8 @@ public interface ProfileService {
 	public Optional<Profile> getProfile(String name);
 
 	public List<Profile> getProfileSelection(int actualUserId);
+	
+	public boolean likeProfile(int actualUserId, int likedUserId);
+	
 
 }
