@@ -14,7 +14,7 @@ import javax.persistence.Table;
  */
 
 @Entity
-@Table (name = "profiles")
+@Table(name = "profiles")
 public class Profile {
 
 	private int id_profile;
@@ -25,7 +25,7 @@ public class Profile {
 	private int desired_gender;
 	private int desired_age_max;
 	private int desired_age_min;
-	
+
 	public Profile() {
 	}
 
@@ -114,7 +114,5 @@ public class Profile {
 				+ ", description=" + description + ", desired_gender=" + desired_gender + ", desired_age_max="
 				+ desired_age_max + ", desired_age_min=" + desired_age_min + "]";
 	}
-	
-	
-	
+
 }
