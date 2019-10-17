@@ -16,7 +16,7 @@ public class ProfileRepositoryCustomImpl implements ProfileRepositoryCustom {
 
 	@Override
 	public Optional<Profile> getProfile(String name) {
-		return Optional.ofNullable((em.createQuery("SELECT c FROM Country c WHERE c.name = ?", Profile.class)
+		return Optional.ofNullable((em.createQuery("SELECT c FROM Profile c WHERE c.name = ?1", Profile.class)
 				.setParameter(1, name)
 				.getSingleResult()));
 	}
