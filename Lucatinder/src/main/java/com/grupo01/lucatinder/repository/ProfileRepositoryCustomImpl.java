@@ -15,6 +15,7 @@ import com.grupo01.lucatinder.models.Profile;
 @Repository
 public class ProfileRepositoryCustomImpl implements ProfileRepositoryCustom {
 
+	private Profile profile;
 	@PersistenceContext
 	private EntityManager em;
 
@@ -24,14 +25,19 @@ public class ProfileRepositoryCustomImpl implements ProfileRepositoryCustom {
 	@Override
 	public Optional<Profile> getProfile(String name) {
 		return Optional.ofNullable((em.createQuery("SELECT c FROM Profile c WHERE c.name = ?1", Profile.class)
-				.setParameter(1, name)
-				.getSingleResult()));
+				.setParameter(1, name).getSingleResult()));
 	}
 
-	@Override
+	/**
+	 * @author MC
+	 * @param actualUserId
+	 * @return List<Profile>
+	 */
+
 	public List<Profile> getProfileSelection(int actualUserId) {
-		// TODO Auto-generated method stub
-		return null;
-	}
 
+		String hql = "FROM Profile WhERE id_profile <> '" + actualUserId + "'";
+		return (List<Profile>) em.createQuery(hql).getResultList();
+
+	}
 }
