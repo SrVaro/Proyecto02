@@ -33,7 +33,6 @@ public class ProfileServiceImpl implements ProfileService {
 
 	@Override
 	public List<Profile> getProfileSelection(int actualUserId) {
-		// return profileRep.getProfile(String name);
-		return null;
+		return profileRep.getProfileSelection(actualUserId);
 	}
 }
