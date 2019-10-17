@@ -44,4 +44,8 @@ public class ProfileServiceImpl implements ProfileService {
 		// return profileRep.likeProfile(int actualUserId, int likedUserId);
 		return false;
 	}
+	
+	public List<Profile> getContactList(int actualUserId){
+		return profileRep.getContactList(actualUserId);
+	}
 }
