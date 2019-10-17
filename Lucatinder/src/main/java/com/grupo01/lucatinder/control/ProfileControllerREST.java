@@ -45,53 +45,45 @@ public class ProfileControllerREST {
 	Boolean likeProfile(@PathVariable int id) {
 		return this.profileServ.likeProfile(actualUserID, id);
 	}
-	
+
 	/**
 	 * @author MJ
 	 */
 	@PostMapping
 	public ResponseEntity<?> addProfile(@RequestBody Profile profile) {
 		Profile result = this.profileServ.addProfile(profile);
-		URI location = ServletUriComponentsBuilder
-				.fromCurrentRequest()
-				.path("/{id}")
-				.buildAndExpand(result.getId_profile())
-				.toUri();
+		URI location = ServletUriComponentsBuilder.fromCurrentRequest().path("/{id}")
+				.buildAndExpand(result.getId_profile()).toUri();
 
 		return ResponseEntity.created(location).build();
 	}
-	
+
 	/**
 	 * 
 	 * @author AR
 	 */
-	
+
 	@GetMapping("/login/{name}")
 	public Profile loginUser(@PathVariable String name) {
 		logger.info("-- Comprobando si el usuario existe --");
-		Profile p = profileServ.getProfile(name).orElseThrow(ProfileNotFoundException:: new);
+		Profile p = profileServ.getProfile(name).orElseThrow(ProfileNotFoundException::new);
 		if (p != null) {
 			this.actualUserID = p.getId_profile();
 		}
 		return p;
 	}
 
-
-	//CREAR METODO "getContacts() : List<Profile>" en "ProfileControllerREST" que escuche al endpoint "/contacts"
-	
 	/**
 	 * 
 	 * @author AR
 	 */
-	
-	@SuppressWarnings("unchecked")
+
 	@GetMapping("/contacts/{name}")
 	public List<Profile> getContacts(@PathVariable String name) {
-		Profile p = profileServ.getProfile(name).orElseThrow(ProfileNotFoundException:: new);
+		Profile p = profileServ.getProfile(name).orElseThrow(ProfileNotFoundException::new);
 		logger.info("--listando contactos");
 		this.actualUserID = p.getId_profile();
 		return profileServ.getContactList(actualUserID);
-		
-		
+
 	}
 }
