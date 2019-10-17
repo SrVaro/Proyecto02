@@ -46,6 +46,13 @@ public class ProfileControllerMVC {
 		}
 		return link;
 	}
+	
+	@RequestMapping("/home")
+	public String getProfileSelection(ModelMap model) throws Exception{
+		logger.info("-- en Listado");
+		model.addAttribute("profilesList", profileServ.getProfileSelection(actualUserID));
+		return "home";
+	}
 
 	/**
 	 * 
