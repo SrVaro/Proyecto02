@@ -64,7 +64,7 @@ public class ProfileControllerREST {
 	@GetMapping("/login/{name}")
 	public Profile loginUser(@PathVariable String name) {
 		logger.info("-- Comprobando si el usuario existe --");
-		Profile p = profileServ.getProfile(name).get();
+		Profile p = profileServ.getProfile(name).orElseThrow(ProfileNotFoundException: : new);
 		if (p != null) {
 			this.actualUserID = p.getId_profile();
 		}
