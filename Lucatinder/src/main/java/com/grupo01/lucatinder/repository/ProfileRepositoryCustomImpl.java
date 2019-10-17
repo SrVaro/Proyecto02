@@ -71,4 +71,11 @@ public class ProfileRepositoryCustomImpl implements ProfileRepositoryCustom {
 
 
 }
+	/**
+	 * @author MC
+	 * @param actualUserId
+	 * @return List<Profile>
+	 */
+	
+	
 }

@@ -9,8 +9,11 @@ import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import com.grupo01.lucatinder.services.ProfileService;
+
+import org.springframework.ui.Model;
 import org.springframework.ui.ModelMap;
 import org.springframework.web.bind.annotation.GetMapping;
+
 import com.grupo01.lucatinder.models.Profile;
 
 
@@ -110,5 +113,20 @@ public class ProfileControllerMVC {
 		// profileServ.dislikeProfile(actualUserID, id);
 		return "redirect:/home";
 
+	}
+	
+	/**
+	 * @author MC
+	 * @param model
+	 * @return contacts.html
+	 * @throws Exception
+	 */
+	
+	@RequestMapping(value = "/contacts", method = RequestMethod.GET)
+	public String getContactList(Model model ) throws Exception{
+			
+		List<Profile> listcontact = profileServ.getContactList(actualUserID);
+		model.addAttribute("listcontact", listcontact);
+		return "contacts";
 	}
 }
