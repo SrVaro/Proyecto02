@@ -26,6 +26,9 @@ public class ProfileServiceImpl implements ProfileService {
 		return profileRep.save(p);
 	}
 
+	/**
+	 * @author AL
+	 */
 	@Override
 	public Optional<Profile> getProfile(String name) {
 		return profileRep.getProfile(name);
@@ -35,5 +38,11 @@ public class ProfileServiceImpl implements ProfileService {
 	public List<Profile> getProfileSelection(int actualUserId) {
 		return profileRep.getProfileSelection(actualUserId);
 	}
-	
+
+
+	@Override
+	public boolean likeProfile(int actualUserId, int likedUserId) {
+		return profileRep.likeProfile(actualUserId, likedUserId);
+	}
+
 }

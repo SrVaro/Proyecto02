@@ -19,4 +19,6 @@ public interface ProfileService {
 
 	public List<Profile> getProfileSelection(int actualUserId);
 
+	public boolean likeProfile(int actualUserId, int likedUserId);
+
 }
