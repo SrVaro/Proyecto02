@@ -1,5 +1,7 @@
 package com.grupo01.lucatinder.services;
 
+import java.util.Optional;
+
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -28,8 +30,8 @@ public class ProfileServiceImpl implements ProfileService{
 	}
 
 	@Override
-	public Profile getProfile(String name) {
-		return null;
+	public Optional<Profile> getProfile(String name) {
+		return profileRep.getProfile(name);
 	}
 	
 	
