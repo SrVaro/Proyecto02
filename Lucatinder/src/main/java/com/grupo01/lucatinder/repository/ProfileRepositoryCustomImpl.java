@@ -41,7 +41,9 @@ public class ProfileRepositoryCustomImpl implements ProfileRepositoryCustom {
 				+ "	SELECT C.id_profile_liked " + "	FROM contacts C " + "    JOIN profiles P "
 				+ "    ON P.id_profile = C.id_profile " + "    WHERE P.id_profile = ?) ";
 
-		List<Object[]> lp = em.createNativeQuery(hql).setParameter(1, actualUserId).setParameter(2, actualUserId)
+		List<Object[]> lp = em.createNativeQuery(hql)
+				.setParameter(1, actualUserId)
+				.setParameter(2, actualUserId)
 				.getResultList();
 
 		return ProfileConverter.toProfileList(lp);
@@ -61,23 +63,26 @@ public class ProfileRepositoryCustomImpl implements ProfileRepositoryCustom {
 		return em.createNativeQuery(hql).setParameter(1, actualUserId).getResultList();
 	}
 
+	/**
+	 * @author MJ
+	 */
 	@Override
 	public boolean dislikeProfile(int actualUserId, int dislikedUserId) {
 
 		boolean sucess = false;
 		int n;
 
-		String hql = "INSERT INTO discards (id_discard, id_profile, id_profile_disliked)" + "values (?, ?)";
+		String hql = "INSERT INTO discards(id_discard, id_profile, id_profile_disliked) VALUES (?, ?)";
 		n = em.createNativeQuery(hql).setParameter(1, actualUserId).setParameter(2, dislikedUserId).executeUpdate();
 
-		if (n > 0) {
+		if (n > 0)
 			sucess = true;
-
-		}
 		return sucess;
 	}
 
-	@Transactional
+	/**
+	 * @author MC
+	 */
 	public boolean likeProfile(int actualUserId, int likedUserId) {
 
 		boolean sucess = false;
@@ -85,11 +90,9 @@ public class ProfileRepositoryCustomImpl implements ProfileRepositoryCustom {
 		String sql = "INSERT INTO contacts(id_profile, id_profile_liked) VALUES (?,?)";
 
 		n = em.createNativeQuery(sql).setParameter(1, actualUserId).setParameter(2, likedUserId).executeUpdate();
-		if (n > 0) {
+		if (n > 0)
 			sucess = true;
 
-		}
 		return sucess;
-
 	}
 }

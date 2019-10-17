@@ -1,7 +1,5 @@
 package com.grupo01.lucatinder.control;
 
-import java.util.List;
-
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -12,11 +10,8 @@ import com.grupo01.lucatinder.services.ProfileService;
 import org.springframework.ui.ModelMap;
 import org.springframework.web.bind.annotation.GetMapping;
 import com.grupo01.lucatinder.models.Profile;
-
-
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMethod;
-import org.springframework.web.bind.annotation.RequestParam;
 
 @Controller("ControllerMVC")
 
@@ -26,9 +21,6 @@ public class ProfileControllerMVC {
 	private static final Logger logger = LoggerFactory.getLogger(ProfileControllerMVC.class);
 
 	private int actualUserID;
-	
-	
-	
 
 	@Autowired
 	private ProfileService profileServ;
@@ -85,8 +77,6 @@ public class ProfileControllerMVC {
 		profileServ.addProfile(profile);
 		return "redirect:/index";
 	}
-
-
 
 	/**
 	 * @author AR
