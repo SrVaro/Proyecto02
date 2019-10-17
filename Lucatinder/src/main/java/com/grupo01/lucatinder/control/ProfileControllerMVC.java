@@ -18,6 +18,8 @@ public class ProfileControllerMVC {
 	public ProfileControllerMVC() {
 		
 	}
+	
+	private int actualUserID;
 /**
  * 
  * @author andres
