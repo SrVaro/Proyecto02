@@ -5,6 +5,14 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
 import javax.persistence.Table;
 
+/**
+ * 
+ * @author Andres
+ * 
+ * @Date 16/10/19
+ *
+ */
+
 @Entity
 @Table (name = "profiles")
 public class Profile {
