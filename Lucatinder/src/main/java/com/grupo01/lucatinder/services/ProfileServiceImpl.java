@@ -26,6 +26,9 @@ public class ProfileServiceImpl implements ProfileService {
 		return profileRep.save(p);
 	}
 
+	/**
+	 * @author AL
+	 */
 	@Override
 	public Optional<Profile> getProfile(String name) {
 		return profileRep.getProfile(name);

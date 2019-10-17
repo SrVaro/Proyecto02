@@ -18,6 +18,9 @@ public class ProfileRepositoryCustomImpl implements ProfileRepositoryCustom {
 	@PersistenceContext
 	private EntityManager em;
 
+	/**
+	 * @author AL
+	 */
 	@Override
 	public Optional<Profile> getProfile(String name) {
 		return Optional.ofNullable((em.createQuery("SELECT c FROM Profile c WHERE c.name = ?1", Profile.class)
