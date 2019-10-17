@@ -48,8 +48,9 @@ public class ProfileServiceImpl implements ProfileService {
 	public boolean dislikeProfile(int actualUserID, int dislikedUserId) {
 		return profileRep.dislikeProfile(actualUserID, dislikedUserId);
 	}
-	
-	public List<Profile> getContactList(int actualUserId){
+
+	public List<Profile> getContactList(int actualUserId) {
 		return profileRep.getContactList(actualUserId);
 	}
+
 }

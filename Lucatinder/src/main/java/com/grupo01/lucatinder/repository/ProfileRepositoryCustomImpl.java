@@ -6,6 +6,7 @@ import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
 import org.springframework.stereotype.Repository;
 import com.grupo01.lucatinder.converters.ProfileConverter;
+import org.springframework.transaction.annotation.Transactional;
 import com.grupo01.lucatinder.models.Profile;
 
 /**
@@ -36,30 +37,16 @@ public class ProfileRepositoryCustomImpl implements ProfileRepositoryCustom {
 	@SuppressWarnings("unchecked")
 	public List<Profile> getProfileSelection(int actualUserId) {
 
-		String hql = "SELECT P.* " + 
-				"FROM profiles P " + 
-				"WHERE P.id_profile != ? " + 
-				"AND P.id_profile NOT IN ( " + 
-				"	SELECT C.id_profile_liked " + 
-				"	FROM contacts C " + 
-				"    JOIN profiles P " + 
-				"    ON P.id_profile = C.id_profile " + 
-				"    WHERE P.id_profile = ?) ";
-		
-		List<Object[]> lp = em.createNativeQuery(hql)
-							.setParameter(1, actualUserId)
-							.setParameter(2, actualUserId)
-							.getResultList();
-		
+		String hql = "SELECT P.* " + "FROM profiles P " + "WHERE P.id_profile != ? " + "AND P.id_profile NOT IN ( "
+				+ "	SELECT C.id_profile_liked " + "	FROM contacts C " + "    JOIN profiles P "
+				+ "    ON P.id_profile = C.id_profile " + "    WHERE P.id_profile = ?) ";
+
+		List<Object[]> lp = em.createNativeQuery(hql).setParameter(1, actualUserId).setParameter(2, actualUserId)
+				.getResultList();
+
 		return ProfileConverter.toProfileList(lp);
 	}
 
-	@Override
-	public boolean likeProfile(int actualUserId, int likedUserId) {
-		// TODO Auto-generated method stub
-		return false;
-	}
-	
 	/**
 	 * @author AR
 	 * 
@@ -88,5 +75,21 @@ public class ProfileRepositoryCustomImpl implements ProfileRepositoryCustom {
 
 		}
 		return sucess;
+	}
+
+	@Transactional
+	public boolean likeProfile(int actualUserId, int likedUserId) {
+
+		boolean sucess = false;
+		int n;
+		String sql = "INSERT INTO contacts(id_profile, id_profile_liked) VALUES (?,?)";
+
+		n = em.createNativeQuery(sql).setParameter(1, actualUserId).setParameter(2, likedUserId).executeUpdate();
+		if (n > 0) {
+			sucess = true;
+
+		}
+		return sucess;
+
 	}
 }

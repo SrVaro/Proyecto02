@@ -12,6 +12,8 @@ import com.grupo01.lucatinder.services.ProfileService;
 import org.springframework.ui.ModelMap;
 import org.springframework.web.bind.annotation.GetMapping;
 import com.grupo01.lucatinder.models.Profile;
+
+
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
@@ -24,6 +26,9 @@ public class ProfileControllerMVC {
 	private static final Logger logger = LoggerFactory.getLogger(ProfileControllerMVC.class);
 
 	private int actualUserID;
+	
+	
+	
 
 	@Autowired
 	private ProfileService profileServ;
@@ -81,6 +86,8 @@ public class ProfileControllerMVC {
 		return "redirect:/index";
 	}
 
+
+
 	/**
 	 * @author AR
 	 * @return home.html
@@ -102,5 +109,6 @@ public class ProfileControllerMVC {
 		logger.info("-- en DISLIKE");
 		profileServ.dislikeProfile(actualUserID, id);
 		return "redirect:/home";
+
 	}
 }
