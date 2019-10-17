@@ -22,16 +22,16 @@ public class Profile {
 	private boolean gender;
 	private int age;
 	private String description;
-	private int desired_gender;
+	private boolean desired_gender;
 	private int desired_age_max;
 	private int desired_age_min;
 
 	public Profile() {
 	}
 
-	public Profile(int id_profile, String name, boolean gender, int age, String description, int desired_gender,
+	public Profile(int id_profile, String name, boolean gender, int age, String description, boolean desired_gender,
 			int desired_age_max, int desired_age_min) {
-
+		super();
 		this.id_profile = id_profile;
 		this.name = name;
 		this.gender = gender;
@@ -84,11 +84,11 @@ public class Profile {
 		this.description = description;
 	}
 
-	public int getDesired_gender() {
+	public boolean getDesired_gender() {
 		return desired_gender;
 	}
 
-	public void setDesired_gender(int desired_gender) {
+	public void setDesired_gender(boolean desired_gender) {
 		this.desired_gender = desired_gender;
 	}
 

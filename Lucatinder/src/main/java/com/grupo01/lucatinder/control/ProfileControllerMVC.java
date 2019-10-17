@@ -52,7 +52,7 @@ public class ProfileControllerMVC {
 
 	@RequestMapping("/home")
 	public String getProfileSelection(ModelMap model) throws Exception {
-		logger.info("-- en Listado");
+		logger.info("-- en HOME --");
 		model.addAttribute("profilesList", profileServ.getProfileSelection(actualUserID));
 		return "home";
 	}
