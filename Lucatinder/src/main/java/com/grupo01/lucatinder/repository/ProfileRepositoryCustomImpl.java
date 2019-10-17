@@ -59,7 +59,6 @@ public class ProfileRepositoryCustomImpl implements ProfileRepositoryCustom {
 		// TODO Auto-generated method stub
 		return false;
 	}
-
 	
 	/**
 	 * @author AR
@@ -73,5 +72,21 @@ public class ProfileRepositoryCustomImpl implements ProfileRepositoryCustom {
 				+ "	ON C.id_profile = P.id_profile" + "	WHERE P.id_profile = ?)";
 
 		return em.createNativeQuery(hql).setParameter(1, actualUserId).getResultList();
+	}
+
+	@Override
+	public boolean dislikeProfile(int actualUserId, int dislikedUserId) {
+
+		boolean sucess = false;
+		int n;
+
+		String hql = "INSERT INTO discards (id_discard, id_profile, id_profile_disliked)" + "values (?, ?)";
+		n = em.createNativeQuery(hql).setParameter(1, actualUserId).setParameter(2, dislikedUserId).executeUpdate();
+
+		if (n > 0) {
+			sucess = true;
+
+		}
+		return sucess;
 	}
 }

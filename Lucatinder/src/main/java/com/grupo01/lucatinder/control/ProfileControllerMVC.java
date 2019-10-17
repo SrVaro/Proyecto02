@@ -100,7 +100,7 @@ public class ProfileControllerMVC {
 	@RequestMapping(value = "/dislike/id", method = RequestMethod.GET)
 	public String dislikeProfile(@PathVariable int id) {
 		logger.info("-- en DISLIKE");
-		// profileServ.dislikeProfile(actualUserID, id);
+		profileServ.dislikeProfile(actualUserID, id);
 		return "redirect:/home";
 	}
 }
