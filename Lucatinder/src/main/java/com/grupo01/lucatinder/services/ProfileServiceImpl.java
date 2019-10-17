@@ -6,6 +6,8 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
+
+import com.github.javafaker.Faker;
 import com.grupo01.lucatinder.models.Profile;
 import com.grupo01.lucatinder.repository.ProfileRepository;
 
@@ -37,7 +39,25 @@ public class ProfileServiceImpl implements ProfileService {
 
 	@Override
 	public List<Profile> getProfileSelection(int actualUserId) {
-		return profileRep.getProfileSelection(actualUserId);
+		
+		List<Profile> lp = profileRep.getProfileSelection(actualUserId);
+		
+		if (lp.size() < 20) {
+			for (int i = 0; i < 20 - lp.size(); i++) {
+				Faker faker = new Faker();
+				profileRep.save(new Profile(0,
+						faker.name().firstName(),
+						false,
+						(int) Math.round(Math.random() * 100),
+						faker.gameOfThrones().character(),
+						true,
+						(int) Math.round(Math.random() * 100),
+						(int) Math.round(Math.random() * 100)
+						));
+			}
+		}
+		
+		return lp;
 	}
 
 	@Override

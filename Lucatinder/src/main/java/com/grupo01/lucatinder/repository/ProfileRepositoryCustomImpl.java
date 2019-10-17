@@ -34,16 +34,30 @@ public class ProfileRepositoryCustomImpl implements ProfileRepositoryCustom {
 	 * @param int actualUserId
 	 * @return List<Profile>
 	 */
+	@Override
 	@SuppressWarnings("unchecked")
 	public List<Profile> getProfileSelection(int actualUserId) {
 
-		String hql = "SELECT P.* " + "FROM profiles P " + "WHERE P.id_profile != ? " + "AND P.id_profile NOT IN ( "
-				+ "	SELECT C.id_profile_liked " + "	FROM contacts C " + "    JOIN profiles P "
-				+ "    ON P.id_profile = C.id_profile " + "    WHERE P.id_profile = ?) ";
+		String hql = "SELECT P.* " + 
+				"FROM profiles P "+
+				"WHERE P.id_profile != ? " + 
+				"AND P.id_profile NOT IN ( " + 
+				"	SELECT C.id_profile_liked " + 
+				"    FROM contacts C " + 
+				"    JOIN profiles P " + 
+				"	ON P.id_profile = C.id_profile " + 
+				"    WHERE P.id_profile = ?) " + 
+				"AND P.id_profile NOT IN ( " + 
+				"	SELECT d.id_profile_disliked " + 
+				"    FROM discards D " + 
+				"    JOIN profiles P " + 
+				"	ON P.id_profile = D.id_profile " + 
+				"    WHERE P.id_profile = ?) ";
 
 		List<Object[]> lp = em.createNativeQuery(hql)
 				.setParameter(1, actualUserId)
 				.setParameter(2, actualUserId)
+				.setParameter(3, actualUserId)
 				.getResultList();
 
 		return ProfileConverter.toProfileList(lp);
@@ -53,6 +67,7 @@ public class ProfileRepositoryCustomImpl implements ProfileRepositoryCustom {
 	 * @author AR
 	 * 
 	 */
+	@Override
 	@SuppressWarnings("unchecked")
 	public List<Profile> getContactList(int actualUserId) {
 
@@ -67,12 +82,13 @@ public class ProfileRepositoryCustomImpl implements ProfileRepositoryCustom {
 	 * @author MJ
 	 */
 	@Override
+	@Transactional
 	public boolean dislikeProfile(int actualUserId, int dislikedUserId) {
 
 		boolean sucess = false;
 		int n;
 
-		String hql = "INSERT INTO discards(id_discard, id_profile, id_profile_disliked) VALUES (?, ?)";
+		String hql = "INSERT INTO discards(id_profile, id_profile_disliked) VALUES (?, ?)";
 		n = em.createNativeQuery(hql).setParameter(1, actualUserId).setParameter(2, dislikedUserId).executeUpdate();
 
 		if (n > 0)
@@ -83,6 +99,8 @@ public class ProfileRepositoryCustomImpl implements ProfileRepositoryCustom {
 	/**
 	 * @author MC
 	 */
+	@Override
+	@Transactional
 	public boolean likeProfile(int actualUserId, int likedUserId) {
 
 		boolean sucess = false;

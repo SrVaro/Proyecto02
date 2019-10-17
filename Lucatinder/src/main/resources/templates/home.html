@@ -8,7 +8,7 @@
 
 <body>
 
-    <div align= "center" th:each="profiles : ${profilesList}" class="card" style="width: 2rem;">
+    <div align= "center" th:each="profile : ${profilesList}" class="card" style="width: 2rem;">
         <img src="Imagen/serveimage.jpg" class="card-img-top" alt="...">
         <div class="card-body">
             <h5 class="card-title" th:text="${profile.name}">Nombre:</h5>
@@ -17,8 +17,8 @@
                 <li class="gender" th:text="${profile.gender}">Género:</li>
             </ul>
             <div class="card-body">
-                <button type="button" class="like">LIKE</button>
-                <button type="button" class="dislike">DISLIKE</button>
+                <a class="like" th:href="@{like(id=${profile.id_profile})}">LIKE</a>
+                <a class="dislike" th:href="@{dislike(id=${profile.id_profile})}">DISLIKE</a>
             </div>
         </div>
     </div>
