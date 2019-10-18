@@ -42,6 +42,17 @@ public class Profile {
 		this.desired_age_min = desired_age_min;
 	}
 
+	public Profile(String name, boolean gender, int age, String description, boolean desired_gender,
+			int desired_age_max, int desired_age_min) {
+		this.name = name;
+		this.gender = gender;
+		this.age = age;
+		this.description = description;
+		this.desired_gender = desired_gender;
+		this.desired_age_max = desired_age_max;
+		this.desired_age_min = desired_age_min;
+	}
+
 	@Id
 	@GeneratedValue
 	public int getId_profile() {

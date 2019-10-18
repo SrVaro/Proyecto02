@@ -119,5 +119,12 @@ public class ProfileRepositoryCustomImpl implements ProfileRepositoryCustom {
 
 		return sucess;
 	}
+	
+	/**
+	 * 
+	 * @author AR
+	 * 
+	 */
 
+	
 }
