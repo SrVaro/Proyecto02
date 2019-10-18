@@ -73,4 +73,18 @@ public class ProfileControllerREST {
 		return p;
 	}
 
+	/**
+	 * 
+	 * @author AR
+	 */
+
+	@GetMapping("/contacts/{name}")
+	public List<Profile> getContacts(@PathVariable String name) {
+		Profile p = profileServ.getProfile(name).orElseThrow(ProfileNotFoundException::new);
+		logger.info("--listando contactos");
+		this.actualUserID = p.getId_profile();
+		return profileServ.getContactList(actualUserID);
+
+	}
+
 }
