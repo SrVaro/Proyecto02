@@ -25,12 +25,13 @@ public class Profile {
 	private boolean desired_gender;
 	private int desired_age_max;
 	private int desired_age_min;
+	private String image;
 
 	public Profile() {
 	}
 
 	public Profile(int id_profile, String name, boolean gender, int age, String description, boolean desired_gender,
-			int desired_age_max, int desired_age_min) {
+			int desired_age_max, int desired_age_min, String image) {
 		super();
 		this.id_profile = id_profile;
 		this.name = name;
@@ -40,6 +41,7 @@ public class Profile {
 		this.desired_gender = desired_gender;
 		this.desired_age_max = desired_age_max;
 		this.desired_age_min = desired_age_min;
+		this.image = image;
 	}
 
 	@Id
@@ -106,6 +108,14 @@ public class Profile {
 
 	public void setDesired_age_min(int desired_age_min) {
 		this.desired_age_min = desired_age_min;
+	}
+
+	public String getImage() {
+		return image;
+	}
+
+	public void setImage(String image) {
+		this.image = image;
 	}
 
 	@Override

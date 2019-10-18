@@ -14,7 +14,6 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.servlet.support.ServletUriComponentsBuilder;
-
 import com.grupo01.lucatinder.exception.ProfileNotFoundException;
 import com.grupo01.lucatinder.models.Profile;
 import com.grupo01.lucatinder.services.ProfileService;
@@ -45,6 +44,11 @@ public class ProfileControllerREST {
 	Boolean likeProfile(@PathVariable int id) {
 		return this.profileServ.likeProfile(actualUserID, id);
 	}
+	
+	@GetMapping("/dislike/{id}")
+	Boolean dislikeProfile(@PathVariable int id) {
+		return this.profileServ.dislikeProfile(actualUserID, id);
+	}
 
 	/**
 	 * @author MJ
@@ -62,7 +66,6 @@ public class ProfileControllerREST {
 	 * 
 	 * @author AR
 	 */
-
 	@GetMapping("/login/{name}")
 	public Profile loginUser(@PathVariable String name) {
 		logger.info("-- Comprobando si el usuario existe --");
@@ -77,7 +80,6 @@ public class ProfileControllerREST {
 	 * 
 	 * @author AR
 	 */
-
 	@GetMapping("/contacts/{name}")
 	public List<Profile> getContacts(@PathVariable String name) {
 		Profile p = profileServ.getProfile(name).orElseThrow(ProfileNotFoundException::new);
