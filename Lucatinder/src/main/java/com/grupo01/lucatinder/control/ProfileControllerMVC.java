@@ -33,7 +33,7 @@ public class ProfileControllerMVC {
 	}
 
 	@RequestMapping("/")
-	String index() {
+	String index(Model model) {
 		return "index";
 	}
 
