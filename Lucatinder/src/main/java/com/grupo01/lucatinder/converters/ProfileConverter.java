@@ -13,7 +13,7 @@ public class ProfileConverter {
 
 		for (Object[] p : rq) {
 			profileList.add(new Profile((int) p[0], (String) p[1], (Boolean) p[2], (int) p[3], (String) p[4],
-					(boolean) p[5], (int) p[6], (int) p[7]));
+					(boolean) p[5], (int) p[6], (int) p[7], (String) p[9]));
 		}
 
 		return profileList;

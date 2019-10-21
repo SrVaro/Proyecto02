@@ -25,5 +25,7 @@ public interface ProfileService {
 
 	public List<Profile> getContactList(int actualUserId);
 
+	String getImage();
+
 
 }
