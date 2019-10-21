@@ -12,6 +12,8 @@ import com.grupo01.lucatinder.services.ProfileService;
 import org.springframework.ui.Model;
 import org.springframework.ui.ModelMap;
 import org.springframework.web.bind.annotation.GetMapping;
+
+import com.grupo01.lucatinder.exception.ProfileNotFoundException;
 import com.grupo01.lucatinder.models.Profile;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMethod;
@@ -42,10 +44,11 @@ public class ProfileControllerMVC {
 	 * @param name
 	 * @return login.html
 	 * @throws Exception
+	 * 
+	 *                   Metodo que te dirige a la pagina login
 	 */
 	@GetMapping("/login")
 	String loginTemplate(Model model) {
-		logger.info("-- Comprobando si el usuario existe --");
 		model.addAttribute("profile", new Profile());
 		return "login";
 	}
@@ -55,12 +58,14 @@ public class ProfileControllerMVC {
 	 * @param name
 	 * @return home.html
 	 * @throws Exception
+	 * 
+	 *                   Metodo que comprueba si el usuario existe y te logea
 	 */
 	@PostMapping("/login")
 	String loginProfile(@ModelAttribute Profile profile) throws Exception {
 		logger.info("-- Comprobando si el usuario existe --");
-		String link = "index";
-		Profile p = profileServ.getProfile(profile.getName()).get();
+		String link = "login";
+		Profile p = profileServ.getProfile(profile.getName()).orElse(null);
 		if (p != null) {
 			link = "redirect:/mvc/profile/home";
 			this.actualUserID = p.getId_profile();
@@ -95,8 +100,13 @@ public class ProfileControllerMVC {
 	@RequestMapping(value = "/save", method = RequestMethod.POST)
 	public String save(@ModelAttribute Profile profile) {
 		logger.info("-- en SAVE");
-		this.actualUserID = profileServ.addProfile(profile).getId_profile();
-		return "redirect:/mvc/profile/home";
+		Profile p = profileServ.addProfile(profile);
+		if (p != null) {
+			this.actualUserID = p.getId_profile();
+			return "redirect:/mvc/profile/home";
+		}else {
+			return "redirect:/mvc/profile/new";
+		}
 	}
 
 	/**
@@ -134,6 +144,6 @@ public class ProfileControllerMVC {
 	public String getContactList(Model model) throws Exception {
 		List<Profile> listcontact = profileServ.getContactList(actualUserID);
 		model.addAttribute("listContact", listcontact);
-		return "contacts";
+		return "profileList";
 	}
 }
