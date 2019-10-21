@@ -55,5 +55,21 @@ public class ProfileControllerREST {
 		return ResponseEntity.created(location).build();
 	}
 
+	//4B.1 CREAR METODO "likeProfile() : Profile p" en "ProfileControllerREST" que escuche al endpoint "/like/id"
+	/**
+	 * @author MC
+	 */
+@PostMapping("/like")
+ public ResponseEntity<?> addlikeProfile(@PathParam (profile.profile_id) ) {
+	profileServ.likeProfile(actualUserID, );
+	
+	
+	URI location = ServletUriComponentsBuilder
+			.fromCurrentRequest()
+			.path("/{id}")
+			.buildAndExpand(result.getId_profile())
+			.toUri();
 
+	return ResponseEntity.created(location).build();
+}
 }
