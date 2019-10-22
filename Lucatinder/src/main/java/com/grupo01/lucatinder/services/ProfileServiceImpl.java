@@ -2,8 +2,13 @@ package com.grupo01.lucatinder.services;
 
 import java.util.Optional;
 import java.util.Random;
+
+import javax.persistence.NoResultException;
+
 import java.io.IOException;
 import java.util.List;
+
+import org.hibernate.exception.ConstraintViolationException;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -35,7 +40,12 @@ public class ProfileServiceImpl implements ProfileService {
 
 	@Override
 	public Profile addProfile(Profile p) {
-		return profileRep.save(p);
+		try {
+			p = profileRep.save(p);
+		} catch (Exception ex) {
+			p = null;
+		}
+		return p;
 	}
 
 	/**
@@ -48,25 +58,18 @@ public class ProfileServiceImpl implements ProfileService {
 
 	@Override
 	public List<Profile> getProfileSelection(int actualUserId) {
-		
+
 		List<Profile> lp = profileRep.getProfileSelection(actualUserId);
-		
+
 		if (lp.size() < 20) {
 			for (int i = 0; i < 20 - lp.size(); i++) {
 				Faker faker = new Faker();
-				profileRep.save(new Profile(0,
-						faker.name().firstName(),
-						new Random().nextBoolean(),
-						(int) Math.round(Math.random() * 100),
-						faker.gameOfThrones().character(),
-						true,
-						(int) Math.round(Math.random() * 100),
-						(int) Math.round(Math.random() * 100),
-						this.getImage()
-						));
+				profileRep.save(new Profile(0, faker.name().firstName(), new Random().nextBoolean(),
+						(int) Math.round(Math.random() * 100), faker.gameOfThrones().character(), true,
+						(int) Math.round(Math.random() * 100), (int) Math.round(Math.random() * 100), this.getImage()));
 			}
 		}
-		
+
 		return lp;
 	}
 
@@ -84,7 +87,7 @@ public class ProfileServiceImpl implements ProfileService {
 	public List<Profile> getContactList(int actualUserId) {
 		return profileRep.getContactList(actualUserId);
 	}
-	
+
 	@Override
 	public String getImage() {
 

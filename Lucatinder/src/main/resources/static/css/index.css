@@ -42,16 +42,20 @@
 	position: static;
 }
 
-div.description{	
-	position: absolute;
-	text-align: center;
-	left: 0;
+div.row{	
 	width: 30%;
 	lenght: auto;
 	padding: 1px;
 	background-color: #4475bb;
-	vertical-align:middle;
 	font-weight: bold;
+	text-align: left;
+	position: static;
+}
+
+div.row.line1{
+	vertical-align: right;
+	text-align: right;
+	position: static;
 }
 
 
