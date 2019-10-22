@@ -1,1 +1,19 @@
-<p>profile-list works!</p>
+<div class="card my-5">
+    <div class="card-body">
+       <table class="table table-bordered table-striped">
+           <thead class="thead-dark">
+            <tr>
+               <th scope="col">#</th>
+               <th scope="col">Nombre</th>
+               <th scope="col">Edad</th>
+               <th scope="col">Género</th>
+           </tr>
+           </thead>
+           <tr *ngFor="let profile of profiles">
+               <td>{{ profile.name }}</td>
+               <td>{{ profile.age }}</td>
+               <td>{{ profile.gender }}</td>
+           </tr>
+        </table>
+   </div>
+</div>
