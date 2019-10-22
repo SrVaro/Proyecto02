@@ -1,0 +1,14 @@
+<div class="container">
+        <div class="logo">Login</div>
+        <div class="login-item">
+          <form #myform="ngForm" (ngSubmit)="login(myform)" class="form form-login">
+            <div class="form-field">
+              <label class="user" for="name"><span class="hidden">Name</span></label>
+              <input name="name" id="name" type="text" class="form-input" placeholder="Name" required ngModel>
+            </div>
+            <div class="form-field">
+              <input type="submit" value="Log in">
+            </div>
+          </form>
+        </div>
+    </div>

@@ -1,26 +1,60 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
 <meta charset="UTF-8">
-<title></title>
+<title>LOGIN</title>
+<link rel="stylesheet"
+	href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css"
+	integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T"
+	crossorigin="anonymous">
+<script src="https://code.jquery.com/jquery-3.3.1.slim.min.js"
+	integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo"
+	crossorigin="anonymous"></script>
+<script
+	src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"
+	integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1"
+	crossorigin="anonymous"></script>
+<script
+	src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"
+	integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM"
+	crossorigin="anonymous"></script>
+<link rel="stylesheet" type="text/css" th:href="@{/css/login.css}" />
 </head>
+
 <body>
-	<div align="center">
-		<h1>INICIO DE SESIÓN</h1>
-		<table>
-			<form action="/mvc/profile/login" th:object="${profile}" method="post">
-				<tr>
-					<td>Nombre de usuario:</td>
-					<td><input type="text" th:field="${profile.name}" /> </td>
-				</tr>
-				<tr>
-					<td colspan="2" align="center"><input type="submit"
-						value="Acceder" /></td>
-				</tr>
-				
-			</form>
-        </table>
-        <p colspan="2" align="center"> <a href="/mvc/profile/new">Registrarse ahora</a></p>
-    </div>
+
+	<form class="form-signin" action="/mvc/profile/login"
+		th:object="${profile}" method="post">
+		<div class="text-center mb-4">
+			<h1 class="h1 mb-3 font-weight-normal">INICIO DE SESION</h1>
+			<p>
+				Estas tomando la mejor decision de tu vida <br>
+				<code>Encuentra el amor perfecto </code>
+				Entra ya a nuestro portal de citas y cambia tu vida por completo
+			</p>
+		</div>
+
+		<div class="form-label-group">
+
+			<input class="form-control" type="text" th:field="${profile.name}" />
+			<label for="${profile.name}">User</label>
+
+			<div class="checkbox mb-3">
+				<label> <input type="checkbox" value="remember-me">
+					Recuerdame
+				</label>
+			</div>
+			<button class="btn btn-lg btn-primary btn-block" colspan="2" input
+				type="submit">Entrar</button>
+
+
+			<p colspan="2" align="center">
+				<a href="/mvc/profile/new">Registrarse ahora</a>
+			</p>
+		</div>
+	</form>
+
 </body>
+
 </html>

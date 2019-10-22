@@ -1,0 +1,58 @@
+<div class="card my-5">
+    <div class="card-body">
+      <form (ngSubmit)="onSubmit()" #profileForm="ngForm">
+        <div class="form-group">
+          <label for="name">Name</label>
+          <input type="text" [(ngModel)]="profile.name" 
+            class="form-control" id="name" name="name" placeholder="Enter your name"
+            required #name="ngModel">
+        </div>
+        <div [hidden]="!name.pristine" class="alert alert-danger">Name is required</div>
+        <div class="form-group">
+            <input type="radio" value="true" name="gender" [(ngModel)]="profile.gender" required #genderControl="ngModel"> Male
+            <input type="radio" value="false" name="gender" [(ngModel)]="profile.gender" required> Female 
+        </div>
+        <div class="form-group">
+            <label for="age">Age</label>
+            <input type="number" [(ngModel)]="profile.age" 
+              class="form-control" id="age" name="age" placeholder="Enter your age"
+              required #age="ngModel">
+        </div>
+        <div class="form-group">
+        <label for="description">Description</label>
+        <input type="text" [(ngModel)]="profile.description" 
+            class="form-control" id="description" name="description" placeholder="Enter your description"
+            required #age="ngModel">
+        </div>
+        <div class="form-group">
+            <input type="radio" value="true" name="gender_desired" [(ngModel)]="profile.desired_gender" required #genderControl="ngModel"> Male
+            <input type="radio" value="false" name="gender_desired" [(ngModel)]="profile.desired_gender" required> Female 
+        </div>
+        <div class="form-group">
+            <label for="age">Age</label>
+            <input type="number" [(ngModel)]="profile.desired_age_max" 
+              class="form-control" id="desired_age_max" name="desired_age_max" placeholder="Enter your desired max age"
+              required #age="ngModel">
+        </div>
+        <div class="form-group">
+            <label for="age">Age</label>
+            <input type="number" [(ngModel)]="profile.desired_age_min"
+              class="form-control" id="desired_age_min" name="desired_age_min" placeholder="Enter your desired min age"
+              required #age="ngModel">
+        </div>
+        <div class="form-group">
+            <label for="likes">Likes</label>
+            <input type="text" [(ngModel)]="profile.likes" 
+                class="form-control" id="likes" name="likes" placeholder="Enter your likes"
+                required #likes="ngModel">
+        </div>
+        <div class="form-group">
+            <label for="image">Image</label>
+            <input type="text" [(ngModel)]="profile.image" 
+              class="form-control" id="image" name="image" placeholder="Enter your image"
+              required #image="ngModel">
+          </div>
+        <button type="submit" [disabled]="!profileForm.form.valid" class="btn btn-info">Submit</button>
+      </form>
+    </div>
+  </div>
