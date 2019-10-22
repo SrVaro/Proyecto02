@@ -167,4 +167,11 @@ public class ProfileControllerMVC {
 		return "redirect:/index/";
 	}
 	
+	@RequestMapping(value ="/discards", method = RequestMethod.GET)
+	public String getDiscardList(Model model) throws Exception{
+		List<Profile> listcontact = profileServ.getDiscardList(actualUserID);
+		model.addAttribute("listDiscards", listcontact);
+		return "profileList";
+	}
+	
 }
