@@ -23,7 +23,7 @@ export class ProfileService {
     return this.http.post<Profile>(this.lucatinderUrl, profile);
   }
 
-  public findAll(): Observable<Profile[]>{
+  public getSelection(): Observable<Profile[]>{
 
     return this.http.get<Profile[]>(this.lucatinderUrl + 'home');
   }
@@ -34,5 +34,9 @@ export class ProfileService {
 
   public dislike(id: number){
     return this.http.get<Profile>(this.lucatinderUrl + 'dislike/' + id);
+  }
+
+  public getContacts(): Observable<Profile[]>{
+    return this.http.get<Profile[]>(this.lucatinderUrl + 'contacts');
   }
 }
