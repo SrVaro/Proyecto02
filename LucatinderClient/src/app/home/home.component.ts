@@ -16,7 +16,7 @@ export class HomeComponent implements OnInit {
 
   ngOnInit() {
     console.log("--- Inside ProfileListComponent");
-    this.profileService.findAll().subscribe(data => {
+    this.profileService.getSelection().subscribe(data => {
       this.profile = data;
     });
   }
