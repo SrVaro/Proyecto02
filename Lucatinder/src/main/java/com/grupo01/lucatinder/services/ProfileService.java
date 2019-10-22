@@ -31,6 +31,8 @@ public interface ProfileService {
 	public void deleteProfile(int id);
 	
 	public Optional<Profile> showProfile (int id);
+	
+	public List<Profile> getDiscardList(int actualUserId);
 
 
 }
