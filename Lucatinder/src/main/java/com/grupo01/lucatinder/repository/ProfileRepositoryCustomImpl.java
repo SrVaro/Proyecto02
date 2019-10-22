@@ -5,10 +5,8 @@ import java.util.Optional;
 import javax.persistence.EntityManager;
 import javax.persistence.NoResultException;
 import javax.persistence.PersistenceContext;
-
 import org.springframework.data.jpa.repository.Query;
 import org.springframework.stereotype.Repository;
-import com.grupo01.lucatinder.converters.ProfileConverter;
 import org.springframework.transaction.annotation.Transactional;
 import com.grupo01.lucatinder.models.Profile;
 
