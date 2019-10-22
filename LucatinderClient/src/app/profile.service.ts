@@ -13,6 +13,12 @@ export class ProfileService {
     this.lucatinderUrl = 'http://localhost:8080/rest/profile/';
   }
 
+  public login(name: String) {
+    this.lucatinderUrl = 'http://localhost:8080/rest/profile/';
+    this.lucatinderUrl += 'login/' + name;
+    return this.http.get<Profile>(this.lucatinderUrl);
+  }
+
   public save(profile: Profile) {
     return this.http.post<Profile>(this.lucatinderUrl, profile);
   }

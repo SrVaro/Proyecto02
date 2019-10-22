@@ -1,4 +1,6 @@
 import { Component, OnInit } from '@angular/core';
+import { Router } from '@angular/router';
+import { ProfileService } from '../profile.service';
 
 @Component({
   selector: 'app-login',
@@ -7,13 +9,16 @@ import { Component, OnInit } from '@angular/core';
 })
 export class LoginComponent {
 
-  name: String;
 
-  constructor() {
-    this.name = "";
+  constructor(private router: Router, private profileService: ProfileService) {
+
    }
 
-  sumbit() {
+   onSubmit() {
+  }
+
+  login(form){
+    this.profileService.login(form.value.name).subscribe(result => console.log(result));
   }
 
 }
