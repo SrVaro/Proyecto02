@@ -1,7 +1,7 @@
 import { Injectable } from '@angular/core';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Profile } from './profile';
-import {from, Observable} from 'rxjs';
+import { from, Observable } from 'rxjs';
 
 
 @Injectable({
@@ -26,5 +26,13 @@ export class ProfileService {
   public findAll(): Observable<Profile[]>{
 
     return this.http.get<Profile[]>(this.lucatinderUrl + 'home');
+  }
+
+  public like(id: number){
+    return this.http.get<Profile>(this.lucatinderUrl + 'like/' + id);
+  }
+
+  public dislike(id: number){
+    return this.http.get<Profile>(this.lucatinderUrl + 'dislike/' + id);
   }
 }
