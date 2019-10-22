@@ -80,6 +80,13 @@ public class ProfileControllerMVC {
 		model.addAttribute("profilesList", profileServ.getProfileSelection(actualUserID));
 		return "home";
 	}
+	
+	@RequestMapping("/myProfile")
+	public String getMyProfile(ModelMap model) throws Exception {
+		logger.info("-- en MY PERFIL --");
+		model.addAttribute("profile", profileServ.getProfileSelection(actualUserID));
+		return "home";
+	}
 
 	/**
 	 * 
