@@ -9,7 +9,8 @@ const routes: Routes = [
   // { path: 'kittys', component: KittyListComponent },
   { path: 'home', component: HomeComponent },
   { path: 'register', component: ProfileFormComponent },
-  { path: 'login', component: LoginComponent }
+  { path: 'login', component: LoginComponent },
+  { path: 'home', component: HomeComponent}
 ];
 
 
