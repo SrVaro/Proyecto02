@@ -31,4 +31,8 @@ export class ProfileService {
   public like(id: number){
     return this.http.get<Profile>(this.lucatinderUrl + 'like/' + id);
   }
+
+  public dislike(id: number){
+    return this.http.get<Profile>(this.lucatinderUrl + 'dislike/' + id);
+  }
 }
