@@ -169,4 +169,13 @@ public class ProfileControllerMVC {
 		return "redirect:/index/";
 	}
 	
+	/**
+	 * 
+	 */
+	@RequestMapping(value = "/edit", method = RequestMethod.GET)
+	public String updateProfile(ModelMap model) {
+		logger.info("-- en update");
+		model.addAttribute("profile",profileServ.getProfileId(actualUserID) );
+		return "profileForm";
+	}
 }

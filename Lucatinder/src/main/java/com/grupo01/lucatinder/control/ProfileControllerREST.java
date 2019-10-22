@@ -44,7 +44,7 @@ public class ProfileControllerREST {
 	Boolean likeProfile(@PathVariable int id) {
 		return this.profileServ.likeProfile(actualUserID, id);
 	}
-	
+
 	@GetMapping("/dislike/{id}")
 	Boolean dislikeProfile(@PathVariable int id) {
 		return this.profileServ.dislikeProfile(actualUserID, id);
