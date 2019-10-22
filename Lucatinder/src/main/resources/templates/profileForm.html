@@ -38,7 +38,7 @@
 		<input type="hidden" th:field="${profile.id_profile}" />
 
 		<div class="form-label-group">
-			<input class="form-control" type="text" th:field="${profile.name}" />
+			<input class="form-control" type="text" th:field="${profile.name}" required autofocus/>
 			<label for="${profile.name}">User</label>
 		</div>
 
