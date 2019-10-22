@@ -1,5 +1,6 @@
 package com.grupo01.lucatinder.control;
 
+import java.util.ArrayList;
 import java.util.List;
 import javax.servlet.http.HttpServletRequest;
 import org.slf4j.Logger;
@@ -89,6 +90,10 @@ public class ProfileControllerMVC {
 	@GetMapping("/new")
 	public String addProfile(ModelMap model) {
 		logger.info("-- Creando un nuevo usuario --");
+		List<String> p = new ArrayList<>();
+        p.add("fadsuk");
+        p.add("fadsuk");
+        model.addAttribute("categorys", p);
 		model.addAttribute("profile", new Profile());
 		return "profileForm";
 	}

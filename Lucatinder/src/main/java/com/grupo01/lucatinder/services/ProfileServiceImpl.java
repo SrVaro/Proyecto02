@@ -122,5 +122,9 @@ public class ProfileServiceImpl implements ProfileService {
 	public void deleteProfile(int id) {
 		profileRep.deleteById(id);
 	}
+	
+	public List<Profile> getDiscardList(int actualUserId) {
+		return profileRep.getDiscardList(actualUserId);
+	}
 
 }
