@@ -10,15 +10,23 @@ import {ProfileService} from '../profile.service';
 export class HomeComponent implements OnInit {
 
 
-  profile: Profile[];
+  profiles: Profile[];
 
   constructor(private profileService: ProfileService) { }
 
   ngOnInit() {
     console.log("--- Inside ProfileListComponent");
     this.profileService.getSelection().subscribe(data => {
-      this.profile = data;
+      this.profiles = data;
     });
+  }
+
+  like(profile: Profile){
+    this.profiles = this.profiles.filter(p => p !== profile);
+  }
+
+  dislike(profile: Profile){
+    this.profiles = this.profiles.filter(p => p !== profile);
   }
 
 
