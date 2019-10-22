@@ -162,9 +162,8 @@ public class ProfileControllerMVC {
 	
 	/**
 	 * @author MJ
-	 * @param
-	 * @return
-	 * @throws
+	 * @param delete
+	 * @return index.html
 	 */
 	
 	@RequestMapping(value = "/delete", method = RequestMethod.GET)
@@ -173,7 +172,6 @@ public class ProfileControllerMVC {
 		profileServ.deleteProfile(actualUserID);
 		return "redirect:/index/";
 	}
-	
 
 	/**
 	 * 
@@ -192,5 +190,18 @@ public class ProfileControllerMVC {
 		model.addAttribute("listDiscards", listDiscards);
 		return "profileList";
 	}
+
+	/**
+	 * @author MJ
+	 * @param show
+	 * @return myProfile.html
+	 */
 	
+	@RequestMapping(value = "/profile/{id}/", method = RequestMethod.GET)
+	public String showProfile(){
+		logger.info("-- en SHOW");
+		profileServ.getProfileId(actualUserID);
+		return "myProfile";
+	}
+
 }

@@ -118,21 +118,25 @@ public class ProfileServiceImpl implements ProfileService {
 
 		return photo;
 	}
-
+	
+	@Override
 	public void deleteProfile(int id) {
 		profileRep.deleteById(id);
 	}
 	
+
+	@Override
 	public List<Profile> getDiscardList(int actualUserId) {
 		return profileRep.getDiscardList(actualUserId);
 	}
 
+	@Override
 	public void updateProfile(Profile profile) {
 		profileRep.save(profile);
 	}
 
+	@Override
 	public Optional<Profile> getProfileId(int id) {
-		
 		return profileRep.findById(id);
 	}
 

@@ -28,6 +28,8 @@ public interface ProfileService {
 	String getImage();
 
 	public void deleteProfile(int id);
+	
+	public List<Profile> getDiscardList(int actualUserId);
 
 	public void updateProfile(Profile profile);
 
