@@ -1,4 +1,6 @@
 import { Component, OnInit } from '@angular/core';
+import {Profile} from '../profile';
+import {ProfileService} from '../profile.service';
 
 @Component({
   selector: 'app-home',
@@ -7,9 +9,16 @@ import { Component, OnInit } from '@angular/core';
 })
 export class HomeComponent implements OnInit {
 
-  constructor() { }
+
+  profile: Profile[];
+
+  constructor(private profileService: ProfileService) { }
 
   ngOnInit() {
+    console.log("--- Inside ProfileListComponent");
+    this.profileService.findAll().subscribe(data => {
+      this.profile = data;
+    });
   }
 
 }
