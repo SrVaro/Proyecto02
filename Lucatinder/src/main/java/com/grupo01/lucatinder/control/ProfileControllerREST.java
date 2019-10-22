@@ -35,7 +35,7 @@ public class ProfileControllerREST {
 	 * 
 	 */
 	@GetMapping("/home")
-	public List<Profile> getProfileSelection(Model model) throws Exception {
+	public List<Profile> getProfileSelection() throws Exception {
 		logger.info("-- en HOME --");
 		return profileServ.getProfileSelection(actualUserID);
 	}
@@ -80,11 +80,9 @@ public class ProfileControllerREST {
 	 * 
 	 * @author AR
 	 */
-	@GetMapping("/contacts/{name}")
-	public List<Profile> getContacts(@PathVariable String name) {
-		Profile p = profileServ.getProfile(name).orElseThrow(ProfileNotFoundException::new);
+	@GetMapping("/contacts")
+	public List<Profile> getContacts() {
 		logger.info("--listando contactos");
-		this.actualUserID = p.getId_profile();
 		return profileServ.getContactList(actualUserID);
 
 	}
