@@ -1,13 +1,14 @@
-<div class="card my-5">
-    <div class="card-body">
-        <form (ngSubmit)="onSubmit()" #nameForm="ngForm">
-        <div class="form-group">
-            <label for="name">Name</label>
-            <input type="text" [(ngModel)]="name" 
-            class="form-control" id="name" name="name" placeholder="Enter your name"
-            required #name="ngModel">
+<div class="container">
+        <div class="logo">Login</div>
+        <div class="login-item">
+          <form #myform="ngForm" (ngSubmit)="login(myform)" class="form form-login">
+            <div class="form-field">
+              <label class="user" for="name"><span class="hidden">Name</span></label>
+              <input name="name" id="name" type="text" class="form-input" placeholder="Name" required ngModel>
+            </div>
+            <div class="form-field">
+              <input type="submit" value="Log in">
+            </div>
+          </form>
         </div>
-        <button type="submit" [disabled]="!nameForm.form.valid" class="btn btn-info">Submit</button>
-        </form>
     </div>
-</div>
