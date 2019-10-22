@@ -1,9 +1,15 @@
 package com.grupo01.lucatinder.models;
 
+import java.util.List;
+
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
+import javax.persistence.JoinTable;
+import javax.persistence.ManyToMany;
+import javax.persistence.OneToMany;
 import javax.persistence.Table;
+import javax.persistence.JoinColumn;
 
 /**
  * 
@@ -26,6 +32,7 @@ public class Profile {
 	private int desired_age_max;
 	private int desired_age_min;
 	private String image;
+    private List<Category> category;
 
 	public Profile() {
 	}
@@ -60,9 +67,23 @@ public class Profile {
 	public int getId_profile() {
 		return id_profile;
 	}
-
+	
 	public void setId_profile(int id_profile) {
 		this.id_profile = id_profile;
+	}
+
+	@ManyToMany
+    @JoinTable(name="profile_category",
+                joinColumns=
+                    @JoinColumn (name="id_profile", referencedColumnName="id_profile"),
+                inverseJoinColumns=
+                    @JoinColumn (name="id_category", referencedColumnName="id_category"))
+	public List<Category> getCategory() {
+		return category;
+	}
+
+	public void setCategory(List<Category> category) {
+		this.category = category;
 	}
 
 	public String getName() {

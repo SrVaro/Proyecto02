@@ -17,6 +17,7 @@ import com.grupo01.lucatinder.exception.ProfileNotFoundException;
 import com.grupo01.lucatinder.models.Profile;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.RequestParam;
 
 @Controller("ControllerMVC")
 
@@ -146,4 +147,19 @@ public class ProfileControllerMVC {
 		model.addAttribute("listContact", listcontact);
 		return "profileList";
 	}
+	
+	/**
+	 * @author MJ
+	 * @param
+	 * @return
+	 * @throws
+	 */
+	
+	@RequestMapping(value = "/delete", method = RequestMethod.GET)
+	public String deleteProfile() {
+		logger.info("-- en DELETE");
+		profileServ.deleteProfile(actualUserID);
+		return "redirect:/index/";
+	}
+	
 }
