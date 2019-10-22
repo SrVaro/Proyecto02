@@ -5,10 +5,8 @@ import java.util.Optional;
 import javax.persistence.EntityManager;
 import javax.persistence.NoResultException;
 import javax.persistence.PersistenceContext;
-
 import org.springframework.data.jpa.repository.Query;
 import org.springframework.stereotype.Repository;
-import com.grupo01.lucatinder.converters.ProfileConverter;
 import org.springframework.transaction.annotation.Transactional;
 import com.grupo01.lucatinder.models.Profile;
 
@@ -56,10 +54,10 @@ public class ProfileRepositoryCustomImpl implements ProfileRepositoryCustom {
 				+ "	SELECT d.id_profile_disliked " + "    FROM discards D " + "    JOIN profiles P "
 				+ "	ON P.id_profile = D.id_profile " + "    WHERE P.id_profile = ?) ";
 
-		List<Object[]> lp = em.createNativeQuery(hql).setParameter(1, actualUserId).setParameter(2, actualUserId)
+		return em.createNativeQuery(hql, Profile.class).setParameter(1, actualUserId).setParameter(2, actualUserId)
 				.setParameter(3, actualUserId).getResultList();
 
-		return ProfileConverter.toProfileList(lp);
+		
 	}
 
 	/**
@@ -74,9 +72,7 @@ public class ProfileRepositoryCustomImpl implements ProfileRepositoryCustom {
 				+ "	SELECT C.id_profile_liked FROM profiles P " + "	JOIN contacts C "
 				+ "	ON C.id_profile = P.id_profile " + "	WHERE P.id_profile = ?) ";
 
-		List<Object[]> lp = em.createNativeQuery(hql).setParameter(1, actualUserId).getResultList();
-
-		return ProfileConverter.toProfileList(lp);
+		return em.createNativeQuery(hql, Profile.class).setParameter(1, actualUserId).getResultList();
 	}
 
 	/**
