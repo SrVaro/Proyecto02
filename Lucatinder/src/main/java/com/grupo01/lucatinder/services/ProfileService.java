@@ -29,6 +29,8 @@ public interface ProfileService {
 	String getImage();
 
 	public void deleteProfile(int id);
+	
+	public Optional<Profile> showProfile (int id);
 
 
 }

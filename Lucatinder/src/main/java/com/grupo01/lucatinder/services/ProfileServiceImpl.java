@@ -122,5 +122,9 @@ public class ProfileServiceImpl implements ProfileService {
 	public void deleteProfile(int id) {
 		profileRep.deleteById(id);
 	}
+	
+	public Optional<Profile> showProfile(int id){
+		return profileRep.findById(id);
+	}
 
 }

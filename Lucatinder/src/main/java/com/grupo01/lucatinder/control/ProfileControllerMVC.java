@@ -150,9 +150,8 @@ public class ProfileControllerMVC {
 	
 	/**
 	 * @author MJ
-	 * @param
-	 * @return
-	 * @throws
+	 * @param delete
+	 * @return index.html
 	 */
 	
 	@RequestMapping(value = "/delete", method = RequestMethod.GET)
@@ -162,4 +161,16 @@ public class ProfileControllerMVC {
 		return "redirect:/index/";
 	}
 	
+	/**
+	 * @author MJ
+	 * @param show
+	 * @return myProfile.html
+	 */
+	
+	@RequestMapping(value = "/profile/{id}/", method = RequestMethod.GET)
+	public String showProfile(){
+		logger.info("-- en SHOW");
+		profileServ.showProfile(actualUserID);
+		return "myProfile";
+	}
 }
