@@ -119,4 +119,8 @@ public class ProfileServiceImpl implements ProfileService {
 		return photo;
 	}
 
+	public void deleteProfile(int id) {
+		profileRep.deleteById(id);
+	}
+
 }

@@ -3,6 +3,7 @@ package com.grupo01.lucatinder.services;
 import java.util.Optional;
 import java.util.List;
 
+
 /**
  * @author MJ
  * 
@@ -26,6 +27,8 @@ public interface ProfileService {
 	public List<Profile> getContactList(int actualUserId);
 
 	String getImage();
+
+	public void deleteProfile(int id);
 
 
 }
