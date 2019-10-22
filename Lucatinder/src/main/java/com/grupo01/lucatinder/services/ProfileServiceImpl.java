@@ -123,4 +123,13 @@ public class ProfileServiceImpl implements ProfileService {
 		profileRep.deleteById(id);
 	}
 
+	public void updateProfile(Profile profile) {
+		profileRep.save(profile);
+	}
+
+	public Optional<Profile> getProfileId(int id) {
+		
+		return profileRep.findById(id);
+	}
+
 }
