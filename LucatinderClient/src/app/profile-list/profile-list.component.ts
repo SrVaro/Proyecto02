@@ -1,4 +1,5 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, Input } from '@angular/core';
+import { Profile } from '../profile';
 
 @Component({
   selector: 'app-profile-list',
@@ -6,7 +7,9 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./profile-list.component.css']
 })
 export class ProfileListComponent implements OnInit {
-
+ 
+  @Input() profiles : Profile[];   
+  
   constructor() { }
 
   ngOnInit() {
