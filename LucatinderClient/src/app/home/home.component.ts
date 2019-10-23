@@ -21,13 +21,5 @@ export class HomeComponent implements OnInit {
     });
   }
 
-  like(profile: Profile){
-    this.profiles = this.profiles.filter(p => p !== profile);
-  }
-
-  dislike(profile: Profile){
-    this.profiles = this.profiles.filter(p => p !== profile);
-  }
-
 
 }

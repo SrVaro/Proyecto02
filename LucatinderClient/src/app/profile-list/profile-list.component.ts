@@ -1,5 +1,6 @@
 import { Component, OnInit, Input } from '@angular/core';
 import { Profile } from '../profile';
+import { ProfileService } from '../profile.service';
 
 @Component({
   selector: 'app-profile-list',
@@ -10,9 +11,23 @@ export class ProfileListComponent implements OnInit {
  
   @Input() profiles : Profile[];   
   
-  constructor() { }
+  constructor(private profileService: ProfileService) { }
 
   ngOnInit() {
+  }
+
+  like(profile: Profile){
+    this.profiles = this.profiles.filter(p => p !== profile);
+    this.profileService.like(profile.id_profile).subscribe(data => {
+      console.log(data);
+    });
+  }
+
+  dislike(profile: Profile){
+    this.profiles = this.profiles.filter(p => p !== profile);
+    this.profileService.dislike(profile.id_profile).subscribe(data => {
+      console.log(data);
+    });
   }
 
 }
