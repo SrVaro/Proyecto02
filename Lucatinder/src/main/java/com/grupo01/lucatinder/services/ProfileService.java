@@ -34,5 +34,7 @@ public interface ProfileService {
 	public void updateProfile(Profile profile);
 
 	public Optional<Profile> getProfileId(int id);
+	
+	public List<Profile> getMatchesList(int actualUserId);
 
 }
