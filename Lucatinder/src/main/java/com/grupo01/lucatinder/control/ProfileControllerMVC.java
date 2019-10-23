@@ -9,15 +9,12 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
-
 import com.grupo01.lucatinder.services.CategoryService;
 import com.grupo01.lucatinder.services.ProfileService;
 import org.springframework.ui.Model;
 import org.springframework.ui.ModelMap;
 import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.GetMapping;
-
-import com.grupo01.lucatinder.exception.ProfileNotFoundException;
 import com.grupo01.lucatinder.models.Category;
 import com.grupo01.lucatinder.models.Profile;
 import org.springframework.web.bind.annotation.ModelAttribute;
