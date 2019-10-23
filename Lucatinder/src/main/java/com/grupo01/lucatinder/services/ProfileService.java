@@ -35,4 +35,6 @@ public interface ProfileService {
 
 	public Optional<Profile> getProfileId(int id);
 
+	List<Profile> getMatchesList(int actualUserId);
+
 }

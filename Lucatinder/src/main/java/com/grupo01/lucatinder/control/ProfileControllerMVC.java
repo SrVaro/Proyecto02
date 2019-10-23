@@ -9,6 +9,8 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
+
+import com.grupo01.lucatinder.services.CategoryService;
 import com.grupo01.lucatinder.services.ProfileService;
 import org.springframework.ui.Model;
 import org.springframework.ui.ModelMap;
@@ -84,10 +86,10 @@ public class ProfileControllerMVC {
 		model.addAttribute("profilesList", profileServ.getProfileSelection(actualUserID));
 		return "home";
 	}
-	
+
 	@RequestMapping("/myProfile")
 	public String getMyProfile(ModelMap model) throws Exception {
-		logger.info("-- en MY PERFIL --");	
+		logger.info("-- en MY PERFIL --");
 		model.addAttribute("profile", profileServ.getProfileId(actualUserID).get());
 		return "myProfile";
 	}
@@ -100,7 +102,7 @@ public class ProfileControllerMVC {
 	@GetMapping("/new")
 	public String addProfile(ModelMap model) {
 		logger.info("-- Creando un nuevo usuario --");
-        model.addAttribute("categorys", categoryS);
+        model.addAttribute("categorys", categoryServ.getAllCategorys());
 		model.addAttribute("profile", new Profile());
 		return "profileForm";
 	}
@@ -117,7 +119,7 @@ public class ProfileControllerMVC {
 		if (p != null) {
 			this.actualUserID = p.getId_profile();
 			return "redirect:/mvc/profile/home";
-		}else {
+		} else {
 			return "redirect:/mvc/profile/new";
 		}
 	}
@@ -159,13 +161,13 @@ public class ProfileControllerMVC {
 		model.addAttribute("listContact", listcontact);
 		return "profileList";
 	}
-	
+
 	/**
 	 * @author MJ
 	 * @param delete
 	 * @return index.html
 	 */
-	
+
 	@RequestMapping(value = "/delete", method = RequestMethod.GET)
 	public String deleteProfile() {
 		logger.info("-- en DELETE");
@@ -179,14 +181,13 @@ public class ProfileControllerMVC {
 	@RequestMapping(value = "/edit", method = RequestMethod.GET)
 	public String updateProfile(ModelMap model) {
 		logger.info("-- en update");
-		model.addAttribute("profile",profileServ.getProfileId(actualUserID) );
+		model.addAttribute("profile", profileServ.getProfileId(actualUserID));
 		return "profileForm";
 	}
 
-
-	@RequestMapping(value ="/discards", method = RequestMethod.GET)
-	public String getDiscardList(Model model) throws Exception{
-		List<Profile> listDiscards= profileServ.getDiscardList(actualUserID);
+	@RequestMapping(value = "/discards", method = RequestMethod.GET)
+	public String getDiscardList(Model model) throws Exception {
+		List<Profile> listDiscards = profileServ.getDiscardList(actualUserID);
 		model.addAttribute("listDiscards", listDiscards);
 		return "profileList";
 	}
@@ -196,12 +197,24 @@ public class ProfileControllerMVC {
 	 * @param show
 	 * @return myProfile.html
 	 */
-	
+
 	@RequestMapping(value = "/profile/{id}/", method = RequestMethod.GET)
-	public String showProfile(){
+	public String showProfile() {
 		logger.info("-- en SHOW");
 		profileServ.getProfileId(actualUserID);
 		return "myProfile";
+	}
+
+	/**
+	 * @author MC
+	 * @param model
+	 */
+
+	@RequestMapping(value = "/matches", method = RequestMethod.GET)
+	public String getMatchesList(Model model) throws Exception {
+		List<Profile> listMatches = profileServ.getMatchesList(actualUserID);
+		model.addAttribute("listMatches", listMatches);
+		return "profileList";
 	}
 
 }

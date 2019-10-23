@@ -38,8 +38,8 @@
 		<input type="hidden" th:field="${profile.id_profile}" />
 
 		<div class="form-label-group">
-			<input class="form-control" type="text" th:field="${profile.name}" required autofocus/>
-			<label for="${profile.name}">User</label>
+			<input class="form-control" type="text" th:field="${profile.name}"
+				required autofocus /> <label for="${profile.name}">User</label>
 		</div>
 
 		<div class="form-label-group">
@@ -96,6 +96,10 @@
 			<input class="form-control" type="number"
 				th:field="${profile.desired_age_min}" /> <label
 				for="${profile.desired_age_max}">Min age</label>
+		</div>
+		<div class="form-label-group">
+			<input class="form-control" type="hidden" th:field="${profile.image}"
+			 /> <label for="${profile.image}">image</label>
 		</div>
 
 

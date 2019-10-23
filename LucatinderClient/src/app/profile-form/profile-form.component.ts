@@ -11,7 +11,8 @@ import { ProfileService } from '../profile.service';
 export class ProfileFormComponent {
 
   profile: Profile;
-  
+  category: Category[];
+
  
   constructor(private route: ActivatedRoute, private router: Router, private profileService: ProfileService) {
     this.profile = new Profile();

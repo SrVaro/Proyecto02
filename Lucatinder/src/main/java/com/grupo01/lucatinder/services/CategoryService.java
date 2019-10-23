@@ -22,4 +22,6 @@ public interface CategoryService {
 	void deleteCategory(int id);
 
 	Category addCategory(Category p);
+
+	List<Category> getAllCategorys();
 }

@@ -20,6 +20,9 @@ public interface ProfileRepositoryCustom {
 	public List<Profile> getContactList(int actualUserId);
 
 	public boolean dislikeProfile(int actualUserId, int dislikedUserId);
-	
+
 	public List<Profile> getDiscardList(int actualUserId);
+
+	public List<Profile> getMatchesList(int actualUserId);
+
 }

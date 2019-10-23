@@ -139,5 +139,9 @@ public class ProfileServiceImpl implements ProfileService {
 	public Optional<Profile> getProfileId(int id) {
 		return profileRep.findById(id);
 	}
-
+	
+	@Override
+	public List<Profile> getMatchesList(int actualUserId) {
+		return profileRep.getMatchesList(actualUserId);
+	}
 }

@@ -63,5 +63,10 @@ public class CategoryServiceImpl implements CategoryService {
 	public Optional<Category> getCategoryId(int id) {
 		return categoryRep.findById(id);
 	}
+	
+	@Override
+	public List<Category> getAllCategorys(){
+		return categoryRep.findAll();
+	}
 
 }
