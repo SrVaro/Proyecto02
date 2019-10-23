@@ -86,5 +86,15 @@ public class ProfileControllerREST {
 		return profileServ.getContactList(actualUserID);
 
 	}
+	
+	/**
+	 * @author MJ
+	 */
+	
+	@GetMapping("/matches")
+	public List<Profile> getMatches(){
+		logger.info("--listando matches");
+		return profileServ.getMatchesList(actualUserID);
+	}
 
 }
