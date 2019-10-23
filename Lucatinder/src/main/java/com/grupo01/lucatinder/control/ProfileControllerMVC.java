@@ -9,14 +9,13 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
-
 import com.grupo01.lucatinder.services.CategoryService;
 import com.grupo01.lucatinder.services.ProfileService;
 import org.springframework.ui.Model;
 import org.springframework.ui.ModelMap;
+import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.GetMapping;
-
-import com.grupo01.lucatinder.exception.ProfileNotFoundException;
+import com.grupo01.lucatinder.models.Category;
 import com.grupo01.lucatinder.models.Profile;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMethod;
@@ -81,14 +80,14 @@ public class ProfileControllerMVC {
 	}
 
 	@RequestMapping("/home")
-	public String getProfileSelection(ModelMap model) throws Exception {
+	public String getProfileSelection(Model model) throws Exception {
 		logger.info("-- en HOME --");
 		model.addAttribute("profilesList", profileServ.getProfileSelection(actualUserID));
 		return "home";
 	}
 
 	@RequestMapping("/myProfile")
-	public String getMyProfile(ModelMap model) throws Exception {
+	public String getMyProfile(Model model) throws Exception {
 		logger.info("-- en MY PERFIL --");
 		model.addAttribute("profile", profileServ.getProfileId(actualUserID).get());
 		return "myProfile";
@@ -100,12 +99,18 @@ public class ProfileControllerMVC {
 	 * @return profileForm.html
 	 */
 	@GetMapping("/new")
-	public String addProfile(ModelMap model) {
+	public String addProfile(Model model) {
 		logger.info("-- Creando un nuevo usuario --");
-        model.addAttribute("categorys", categoryServ.getAllCategorys());
+		model.addAttribute("categorys", categoryServ.getAllCategorys());
 		model.addAttribute("profile", new Profile());
 		return "profileForm";
 	}
+	
+	@GetMapping("/category")
+	public String addCategorys(Model model) throws Exception {
+        model.addAttribute("categorys", categoryServ.getAllCategorys());
+		return "categorys";
+	}	
 
 	/**
 	 * @author MC
@@ -113,15 +118,35 @@ public class ProfileControllerMVC {
 	 * @return index.html
 	 */
 	@RequestMapping(value = "/save", method = RequestMethod.POST)
-	public String save(@ModelAttribute Profile profile) {
-		logger.info("-- en SAVE");
-		Profile p = profileServ.addProfile(profile);
-		if (p != null) {
-			this.actualUserID = p.getId_profile();
-			return "redirect:/mvc/profile/home";
-		} else {
-			return "redirect:/mvc/profile/new";
+	public String save(@ModelAttribute Profile profile, 
+	         @RequestParam(value = "cat" , required = false) int[] cat,
+	         BindingResult bindingResult) {
+		logger.info("-- en SAVE");	
+		
+		if(cat != null) {
+		    Category category = null;
+		    ArrayList<Category> ListCategorys = new ArrayList<>();
+		    for (int i = 0; i < cat.length; i++) {
+
+		        if(categoryServ.getCategoryId(cat[i]).isPresent()) {
+		            category = new Category();
+		            category.setId_category(cat[i]);
+		            ListCategorys.add(category);
+		            profile.setCategory(ListCategorys);
+		        }
+		    }    
+		    
+		    Profile p = profileServ.addProfile(profile);
+		    
+		    if (p != null) {
+				this.actualUserID = p.getId_profile();
+				return "redirect:/mvc/profile/home";
+			} else {
+				return "redirect:/mvc/profile/new";
+			}
 		}
+		
+		return "redirect:/mvc/profile/new";
 	}
 
 	/**

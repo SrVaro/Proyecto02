@@ -3,13 +3,12 @@
        <table class="table table-bordered table-striped">
            <thead class="thead-dark">
             <tr>
-               <th scope="col">#</th>
                <th scope="col">Nombre</th>
                <th scope="col">Edad</th>
                <th scope="col">Género</th>
 			   <th scope="col">Descripción</th>
-			   <th scope="col">Like</th>
-               <th scope="col">Dislike</th>
+			   <th scope="col" *ngIf="home">Like</th>
+               <th scope="col" *ngIf="home">Dislike</th>
            </tr>
            </thead>
            <tr *ngFor="let profile of profiles">
@@ -17,8 +16,8 @@
                <td>{{ profile.age }}</td>
                <td>{{ profile.gender }}</td>
 			   <td>{{ profile.description }}</td>
-			   <td><button (click)="like(profile)">Like!</button></td>
-               <td><button (click)="dislike(profile)">Dislike!</button></td>
+			   <td *ngIf="home"><button (click)="like(profile)">Like!</button></td>
+               <td *ngIf="home"><button (click)="dislike(profile)">Dislike!</button></td>
            </tr>
         </table>
    </div>

@@ -101,8 +101,12 @@
 			<input class="form-control" type="hidden" th:field="${profile.image}"
 			 /> <label for="${profile.image}">image</label>
 		</div>
-
-
+		<div class="form-label-group">
+			<th:block th:each="category : ${categorys}">
+	                <input type="checkbox" name="cat" th:value="${category.id_category}"/>
+                 	<label th:text="${category.name}"></label>
+	        </th:block>
+        </div>
 		<button colspan="2" class="btn btn-lg btn-primary btn-block"
 			type="submit">Aceptar</button>
 	</form>
