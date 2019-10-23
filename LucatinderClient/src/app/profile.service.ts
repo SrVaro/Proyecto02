@@ -54,4 +54,8 @@ export class ProfileService {
   public getMyProfile() {
     return this.http.get<Profile>(this.lucatinderUrl + 'myprofile');
   }
+  
+  public delete() {
+    return this.http.delete<Profile>(this.lucatinderUrl + 'delete');
+  }
 }

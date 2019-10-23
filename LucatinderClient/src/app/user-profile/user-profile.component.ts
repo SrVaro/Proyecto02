@@ -8,17 +8,25 @@ import { ProfileService } from '../profile.service';
   templateUrl: './user-profile.component.html',
   styleUrls: ['./user-profile.component.css']
 })
-export class UserProfileComponent {
+export class UserProfileComponent implements OnInit{
 
   profile : Profile;
 
   constructor(private route: ActivatedRoute, private router: Router, private profileService: ProfileService) {
   }
- 
-  onSubmit() {
-    this.profileService.delete(this.profile).subscribe(result => this.gotoHome());
+
+  ngOnInit(): void {
+    this.profileService.getMyProfile().subscribe(result => this.profile = result);
   }
  
+  delete() {
+    this.profileService.delete().subscribe(result => this.gotoHome());
+  }
+
+  onSubmit(){
+    this.profileService.edit(this.profile).subscribe(result => this.gotoHome);
+  }
+
   gotoHome() {
     this.router.navigate(['/home']);
   }

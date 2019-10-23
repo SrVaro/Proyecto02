@@ -116,7 +116,8 @@ public class ProfileControllerREST {
 	
 
 	@DeleteMapping("/delete")
-	void delete() {
+	public void delete() {
+		logger.info("-- en DELETE");
 		profileServ.deleteProfile(actualUserID);
 	}
 
