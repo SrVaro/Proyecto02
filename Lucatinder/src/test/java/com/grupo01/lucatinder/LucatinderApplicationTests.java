@@ -2,10 +2,10 @@ package com.grupo01.lucatinder;
 
 import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertNull;
+import static org.junit.Assert.assertNotEquals;
 
 import java.util.ArrayList;
 import java.util.Optional;
-
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 import org.junit.After;
@@ -19,7 +19,6 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.test.context.ActiveProfiles;
 import org.springframework.test.context.junit4.SpringRunner;
-
 import com.grupo01.lucatinder.models.Profile;
 import com.grupo01.lucatinder.repository.ProfileRepository;
 import com.grupo01.lucatinder.services.ProfileService;
@@ -148,7 +147,35 @@ public class LucatinderApplicationTests {
 	}
 
 	/**
-	 * @author MJ
+	 * @author MC
+	 */
+	
+	@Test
+	
+	public void testEditProfile() {
+		logger.info("Prueba para comprobar que se ha editado un perfil");
+		
+		final Profile p = new Profile(0, "pruebaEdit", false, 24, "asdasd", true, 20, 30, "sdjugtr");
+		
+		logger.info("Se crea Perfil");
+		profileService.addProfile(p);
+		
+		Profile edit= new Profile(p.getId_profile(),"pruebaEdit2",false, 24, "asdasd", true, 20, 30,"dkjfldkj");
+		logger.info("Se actualiza perfil");
+		profileService.updateProfile(edit);
+		
+		logger.info("Se lee perfil");
+		Profile nuevo= profileRepository.findById(p.getId_profile()).get();
+		
+		
+		assertNotEquals(profileService.getProfileId(p.getId_profile()),p);
+		assertEquals(profileService.getProfileId(p.getId_profile()).get(),nuevo);
+		assertEquals(edit,nuevo);
+		assertNotEquals(p,nuevo);
+	}
+	/*
+	 * Inicializamos
+>>>>>>> MC
 	 */
 	
 	@Test
