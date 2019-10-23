@@ -1,24 +1,18 @@
-<div class="card my-5">
-    <div class="card-body">
-       <table class="table table-bordered table-striped">
-           <thead class="thead-dark">
-            <tr>
-               <th scope="col">Nombre</th>
-               <th scope="col">Edad</th>
-               <th scope="col">Género</th>
-			   <th scope="col">Descripción</th>
-			   <th scope="col" *ngIf="home">Like</th>
-               <th scope="col" *ngIf="home">Dislike</th>
-           </tr>
-           </thead>
-           <tr *ngFor="let profile of profiles">
-               <td>{{ profile.name }}</td>
-               <td>{{ profile.age }}</td>
-               <td>{{ profile.gender }}</td>
-			   <td>{{ profile.description }}</td>
-			   <td *ngIf="home"><button (click)="like(profile)">Like!</button></td>
-               <td *ngIf="home"><button (click)="dislike(profile)">Dislike!</button></td>
-           </tr>
-        </table>
-   </div>
+<div *ngFor="let profile of profiles">
+    <div class="card" style="text-align: center; float:left; margin: 20px;">
+        <img class="card-img-top" [src]="profile.image" style="height: 200px; width: 200px; ">  
+        <div class="card-body">
+            <div class="card-title">
+                <h4>{{ profile.name }}</h4>
+            </div>
+
+            <div class="card-text">
+                <a>{{ profile.age }}</a></div>
+                <div class="card-text"> <a>{{ profile.gender }}</a> </div>
+                    <div class="card-text"> <a>{{ profile.description }}</a> </div>
+            
+            <a *ngIf="home"><button (click)="like(profile)">Like!</button> </a>
+            <a *ngIf="home"><button (click)="dislike(profile)">Dislike!</button> </a>
+        </div>
+    </div>
 </div>
