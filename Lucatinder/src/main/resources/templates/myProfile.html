@@ -62,7 +62,8 @@
 					<div class="card-body">
 						<h5 class="card-title" th:text="${profile.name}"></h5>
 						<p class="card-text" th:text="'Edad: ' + ${profile.age}"></p>
-						<p class="card-text" th:text="'Genero: ' + ${profile.gender}"></p>
+						<p th:if="${profile.gender}" class="card-text" > Hombre </p>
+						<p th:unless="${profile.gender}" class="card-text"> Mujer </p>
 						<p class="card-text" th:text="'Descripcion ' + ${profile.description}"></p>
 						<p class="card-text" th:text="'Edad deseada (MAX) ' + ${profile.desired_age_max}"></p>
 						<p class="card-text" th:text="'Edad deseada (MIN) ' + ${profile.desired_age_min}"></p>

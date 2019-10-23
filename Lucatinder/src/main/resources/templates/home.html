@@ -62,8 +62,8 @@
 					<div class="card-body">
 						<h5 class="card-title" th:text="${profile.name}"></h5>
 						<p class="card-text" th:text="'Edad: ' + ${profile.age}"></p>
-						<p class="card-text" th:text="'Genero: ' + ${profile.gender}"></p>
-			
+						<p th:if="${profile.gender}" class="card-text" > Hombre </p>
+						<p th:unless="${profile.gender}" class="card-text"> Mujer </p>
 						<a th:href="@{like(id=${profile.id_profile})}"><img
 							th:src="@{/images/like.png}" style="width: 50px" /></a> <a
 							th:href="@{dislike(id=${profile.id_profile})}"><img
