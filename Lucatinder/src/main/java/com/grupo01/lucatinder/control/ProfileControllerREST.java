@@ -89,12 +89,28 @@ public class ProfileControllerREST {
 
 	}
 	
+	/**
+	 * 
+	 * @author AR
+	 */
+	
 	@PutMapping("/edit")
 	public ResponseEntity<Object> editProfile(@RequestBody Profile p){
 		this.profileServ.updateProfile(p);
 		return new ResponseEntity<>(HttpStatus.CREATED);
 	}
 	
+	/**
+	 * 
+	 * @author AR
+	 */
+	
+	@GetMapping("/discards")
+	public List<Profile> getDiscards() {
+		logger.info("--listando discards");
+		return profileServ.getDiscardList(actualUserID);
+
+	}
 	
 
 }
