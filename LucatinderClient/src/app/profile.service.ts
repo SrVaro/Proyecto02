@@ -39,4 +39,12 @@ export class ProfileService {
   public getContacts(): Observable<Profile[]>{
     return this.http.get<Profile[]>(this.lucatinderUrl + 'contacts');
   }
+
+  public getDiscards():Observable<Profile[]>{
+    return this.http.get<Profile[]> (this.lucatinderUrl + 'discards')
+  }
+
+  public getMatches():Observable<Profile[]>{
+    return this.http.get<Profile[]> (this.lucatinderUrl + 'matches')
+  }
 }
