@@ -39,4 +39,8 @@ export class ProfileService {
   public getContacts(): Observable<Profile[]>{
     return this.http.get<Profile[]>(this.lucatinderUrl + 'contacts');
   }
+
+  public delete() {
+    return this.http.delete<Profile>(this.lucatinderUrl + 'delete');
+  }
 }
