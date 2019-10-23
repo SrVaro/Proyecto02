@@ -1,5 +1,6 @@
 package com.grupo01.lucatinder.control;
 
+import java.util.ArrayList;
 import java.util.List;
 import javax.servlet.http.HttpServletRequest;
 import org.slf4j.Logger;
@@ -80,6 +81,13 @@ public class ProfileControllerMVC {
 		model.addAttribute("profilesList", profileServ.getProfileSelection(actualUserID));
 		return "home";
 	}
+	
+	@RequestMapping("/myProfile")
+	public String getMyProfile(ModelMap model) throws Exception {
+		logger.info("-- en MY PERFIL --");	
+		model.addAttribute("profile", profileServ.getProfileId(actualUserID).get());
+		return "myProfile";
+	}
 
 	/**
 	 * 
@@ -89,6 +97,10 @@ public class ProfileControllerMVC {
 	@GetMapping("/new")
 	public String addProfile(ModelMap model) {
 		logger.info("-- Creando un nuevo usuario --");
+		List<String> p = new ArrayList<>();
+        p.add("fadsuk");
+        p.add("fadsuk");
+        model.addAttribute("categorys", p);
 		model.addAttribute("profile", new Profile());
 		return "profileForm";
 	}
@@ -150,18 +162,17 @@ public class ProfileControllerMVC {
 	
 	/**
 	 * @author MJ
-	 * @param
-	 * @return
-	 * @throws
+	 * @param delete
+	 * @return index.html
 	 */
 	
 	@RequestMapping(value = "/delete", method = RequestMethod.GET)
 	public String deleteProfile() {
 		logger.info("-- en DELETE");
 		profileServ.deleteProfile(actualUserID);
-		return "redirect:/index/";
+		return "redirect:/";
 	}
-	
+
 	/**
 	 * 
 	 */
@@ -171,4 +182,26 @@ public class ProfileControllerMVC {
 		model.addAttribute("profile",profileServ.getProfileId(actualUserID) );
 		return "profileForm";
 	}
+
+
+	@RequestMapping(value ="/discards", method = RequestMethod.GET)
+	public String getDiscardList(Model model) throws Exception{
+		List<Profile> listDiscards= profileServ.getDiscardList(actualUserID);
+		model.addAttribute("listDiscards", listDiscards);
+		return "profileList";
+	}
+
+	/**
+	 * @author MJ
+	 * @param show
+	 * @return myProfile.html
+	 */
+	
+	@RequestMapping(value = "/profile/{id}/", method = RequestMethod.GET)
+	public String showProfile(){
+		logger.info("-- en SHOW");
+		profileServ.getProfileId(actualUserID);
+		return "myProfile";
+	}
+
 }

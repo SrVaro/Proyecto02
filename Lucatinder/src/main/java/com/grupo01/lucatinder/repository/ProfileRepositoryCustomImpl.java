@@ -111,4 +111,19 @@ public class ProfileRepositoryCustomImpl implements ProfileRepositoryCustom {
 
 		return sucess;
 	}
+	
+	/**
+	 * author MJ
+	 */
+	
+	@Override
+	@SuppressWarnings("unchecked")
+	public List<Profile> getDiscardList(int actualUserId) {
+
+		String hql = "SELECT P.* FROM profiles P " + " WHERE P.id_profile IN ( "
+				+ "	SELECT D.id_profile_disliked FROM profiles P " + "	JOIN discards D "
+				+ "	ON D.id_profile = P.id_profile " + "	WHERE P.id_profile = ?) ";
+
+		return em.createNativeQuery(hql, Profile.class).setParameter(1, actualUserId).getResultList();
+	}
 }
