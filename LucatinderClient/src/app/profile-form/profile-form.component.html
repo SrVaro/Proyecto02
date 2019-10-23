@@ -8,7 +8,12 @@
             required #name="ngModel">
         </div>
         <div [hidden]="!name.pristine" class="alert alert-danger">Name is required</div>
+        <div class="sing-in-error" *ngIf ="hasFailed">
+          Este usuario ya esta Registrado
+        </div>
         <div class="form-group">
+            <label for="name">Gender</label>
+            <br>
             <input type="radio" value="true" name="gender" [(ngModel)]="profile.gender" required #genderControl="ngModel"> Male
             <input type="radio" value="false" name="gender" [(ngModel)]="profile.gender" required> Female 
         </div>
@@ -25,6 +30,8 @@
             required #age="ngModel">
         </div>
         <div class="form-group">
+            <label for="name">Gender Desired </label>
+            <br>
             <input type="radio" value="true" name="gender_desired" [(ngModel)]="profile.desired_gender" required #genderControl="ngModel"> Male
             <input type="radio" value="false" name="gender_desired" [(ngModel)]="profile.desired_gender" required> Female 
         </div>
