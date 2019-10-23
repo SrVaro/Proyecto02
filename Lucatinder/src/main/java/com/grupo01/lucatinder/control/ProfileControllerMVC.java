@@ -158,7 +158,7 @@ public class ProfileControllerMVC {
 	public String deleteProfile() {
 		logger.info("-- en DELETE");
 		profileServ.deleteProfile(actualUserID);
-		return "redirect:/index/";
+		return "redirect:/";
 	}
 	
 	/**
