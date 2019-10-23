@@ -1,14 +1,13 @@
-<div class="body">
+<div class="text-center border border-light p-5">
   <div class="half">
-  <div class="logo">Login</div>
+      <img class="mb-4" src="./assets/img/lucatinder.PNG" alt="" width="475" height="372">
   <div class="login-item">
     <form #myform="ngForm" (ngSubmit)="login(myform)" class="form form-login">
       <div class="form-field">
-        <label class="user" for="name"><span class="hidden">Name</span></label>
-        <input name="name" id="name" type="text" class="form-input" placeholder="Name" required ngModel>
+        <input name="name" id="name" type="text" class="form-control mb-4 q" placeholder="Name" required ngModel>
       </div>
       <div class="form-field">
-        <input type="submit" value="Log in">
+        <input class="btn btn-lg btn-primary btn-block" type="submit" value="Log in">
       </div>
     </form>
   </div>
