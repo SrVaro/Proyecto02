@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { Profile } from '../profile';
 import { ActivatedRoute, Router } from '@angular/router';
 import { ProfileService } from '../profile.service';
+import { Category } from '../category';
 
 @Component({
   selector: 'app-profile-form',
