@@ -31,6 +31,9 @@ public class ProfileControllerMVC {
 
 	@Autowired
 	private ProfileService profileServ;
+	
+	@Autowired
+	private CategoryService categoryServ;
 
 	public ProfileControllerMVC() {
 
@@ -97,10 +100,7 @@ public class ProfileControllerMVC {
 	@GetMapping("/new")
 	public String addProfile(ModelMap model) {
 		logger.info("-- Creando un nuevo usuario --");
-		List<String> p = new ArrayList<>();
-        p.add("fadsuk");
-        p.add("fadsuk");
-        model.addAttribute("categorys", p);
+        model.addAttribute("categorys", categoryS);
 		model.addAttribute("profile", new Profile());
 		return "profileForm";
 	}
