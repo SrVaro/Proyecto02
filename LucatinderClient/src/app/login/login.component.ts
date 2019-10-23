@@ -9,11 +9,16 @@ import { ProfileService } from '../profile.service';
 })
 export class LoginComponent {
 
+  hasFailed: boolean;
 
   constructor(private router: Router, private profileService: ProfileService) {
+    this.hasFailed = false;
   }
 
   login(form){
-    this.profileService.login(form.value.name).subscribe(data => this.router.navigate(['/home']));
+    this.profileService.login(form.value.name).subscribe(
+      result => this.router.navigate(['/home']),
+      error => { this.hasFailed = true }
+      );
   }
 }

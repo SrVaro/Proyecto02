@@ -7,6 +7,10 @@
         <label class="user" for="name"><span class="hidden">Name</span></label>
         <input name="name" id="name" type="text" class="form-input" placeholder="Name" required ngModel>
       </div>
+      <!--Mensaje Error-->
+      <div class="sign-in-error" *ngIf="hasFailed">
+        El usuario no existe
+      </div>
       <div class="form-field">
         <input type="submit" value="Log in">
       </div>

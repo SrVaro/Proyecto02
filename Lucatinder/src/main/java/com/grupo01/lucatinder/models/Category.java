@@ -21,6 +21,10 @@ public class Category {
 	@JsonIgnore
 	private List<Profile> profile;
 	
+	public Category() {
+		
+	}
+	
 	@Id
     @GeneratedValue
     @Column(name = "id_category")
