@@ -2,6 +2,8 @@ package com.grupo01.lucatinder;
 
 import static org.junit.Assert.assertEquals;
 
+import java.util.ArrayList;
+
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 import org.junit.After;
@@ -38,20 +40,48 @@ public class LucatinderApplicationTests {
 	
 	@Autowired
 	private ProfileRepository profileRepository;
+	
+	/*
+	 * Inicializamos
+	 */
+	static {
+		try {
+			logger = LogManager.getLogger(LucatinderApplicationTests.class);
+		} catch (Throwable e) {
+			System.out.println("Dont work");
+		}
+	}
 
 	@Test
 	public void getSelectionTest() {
 		
 		profileRepository.deleteAll();
-	
-		Profile p1 = new Profile(0, "1", true, 25, "blabla", false, 25, 20, "blabla");
-		Profile p2 = new Profile(0, "2", true, 2, "blabla", false, 25, 20, "blabla");
-		Profile p3 = new Profile(0, "3", false, 1, "blabla", false, 25, 20, "blabla");
-		Profile p4 = new Profile(0, "4", true, 5, "blabla", false, 25, 20, "blabla");
-		Profile p5 = new Profile(0, "5", false, 6, "blabla", false, 25, 20, "blabla");
-		Profile p6 = new Profile(0, "6", true, 7, "blabla", false, 25, 20, "blabla");
 		
-		profileService.getContactList(1);
+		ArrayList<Profile> pl = new ArrayList<>();
+	
+		Profile p1 = new Profile(1, "1", true, 25, "blabla", false, 25, 20, "blabla");
+		
+		Profile p2 = new Profile(2, "2", true, 2, "blabla", false, 25, 20, "blabla");
+		Profile p3 = new Profile(3, "3", false, 1, "blabla", false, 25, 20, "blabla");
+		Profile p4 = new Profile(4, "4", true, 5, "blabla", false, 25, 20, "blabla");
+		Profile p5 = new Profile(5, "5", false, 6, "blabla", false, 25, 20, "blabla");
+		Profile p6 = new Profile(6, "6", true, 7, "blabla", false, 25, 20, "blabla");
+		
+		profileService.addProfile(p1);
+		profileService.addProfile(p2);
+		profileService.addProfile(p3);
+		profileService.addProfile(p4);
+		profileService.addProfile(p5);
+		profileService.addProfile(p6);
+		
+		pl.add(p1);
+		pl.add(p2);
+		pl.add(p3);
+		pl.add(p4);
+		pl.add(p5);
+		pl.add(p6);
+		
+		assertEquals(profileService.getProfileSelection(1).size(), pl.size());
 		
 	}
 	
@@ -84,17 +114,6 @@ public class LucatinderApplicationTests {
 		assertEquals(p.getName(), profileService.getProfile(p.getName()).get().getName());
 	}
 
-	/*
-	 * Inicializamos
-	 */
-	static {
-		try {
-			logger = LogManager.getLogger(LucatinderApplicationTests.class);
-		} catch (Throwable e) {
-			System.out.println("Dont work");
-		}
-	}
-
 	@BeforeClass
 	public static void onceExecutedBeforeAll() {
 		logger.info("@BeforeClass: Al inicio de las pruebas");
@@ -102,6 +121,7 @@ public class LucatinderApplicationTests {
 
 	@Before
 	public void executedBeforeEach() {
+		profileRepository.deleteAll();
 		logger.info("@Before: Antes de cada prueba");
 	}
 
