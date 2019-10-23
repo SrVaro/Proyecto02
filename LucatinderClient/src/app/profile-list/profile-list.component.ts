@@ -11,6 +11,8 @@ export class ProfileListComponent implements OnInit {
  
   @Input() profiles : Profile[];   
   
+  @Input() home : boolean;   
+  
   constructor(private profileService: ProfileService) { }
 
   ngOnInit() {

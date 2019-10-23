@@ -15,7 +15,7 @@ export class UserProfileComponent implements OnInit{
   constructor(private route: ActivatedRoute, private router: Router, private profileService: ProfileService) {
   }
 
-  ngOnInit(): void {
+  ngOnInit() {
     this.profileService.getMyProfile().subscribe(result => this.profile = result);
   }
  
