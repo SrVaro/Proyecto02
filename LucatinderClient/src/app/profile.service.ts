@@ -47,4 +47,11 @@ export class ProfileService {
   public getMatches():Observable<Profile[]>{
     return this.http.get<Profile[]> (this.lucatinderUrl + 'matches')
   }
+  
+  public edit(profile: Profile){
+    return this.http.put(this.lucatinderUrl + 'edit', profile);
+  }
+  public getMyProfile() {
+    return this.http.get<Profile>(this.lucatinderUrl + 'myprofile');
+  }
 }
