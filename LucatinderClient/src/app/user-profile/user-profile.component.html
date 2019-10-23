@@ -1,1 +1,63 @@
-<p>user-profile works!</p>
+<<!DOCTYPE html>
+    <html lang="en">
+
+    <head>
+        <meta charset="UTF-8">
+        <title>Document</title>
+    </head>
+
+    <body>
+
+  
+
+
+
+        <div class="card my-5">
+            <div class="card-body">
+                <table class="table table-bordered table-striped">
+                    <tr>
+                        <td>
+                            <img [src]= " profile.image  " *ngIf="profile"/>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>Nombre:</td>
+                        <td>{{ profile?.name }}</td>
+                    </tr>
+                    <tr>
+                        <td>Edad:</td>
+                        <td>{{ profile?.age }}</td>
+                    </tr>
+                    <tr>
+                        <td>Genero:</td>
+                        <td>{{ profile?.gender }}</td>}
+                    </tr>
+                    <tr>
+                        <td>Descripcion:</td>
+                        <td>{{ profile?.description }}</td>
+                    </tr>
+                    <tr>
+                        <td>Genero deseado:</td>
+                        <td>{{ profile?.desired_gender }}</td>
+                    </tr>
+                    <tr>
+                        <td>Edad máxima deseada:</td>
+                        <td>{{ profile?.desired_age_max }}</td>
+                    </tr>
+                    <tr>
+                        <td>Edad mínima deseada:</td>
+                        <td>{{ profile?.desired_age_min }}</td>
+                    </tr>
+                    <tr>
+                        <td><button (click)="router.navigate(['/register']);">Editar</button></td>
+                        <td><button (click)="delete()">Eliminar</button></td>
+                    </tr>
+
+                </table>
+            </div>
+        </div>
+
+
+    </body>
+
+    </html>
