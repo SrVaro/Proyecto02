@@ -13,15 +13,18 @@ export class ProfileFormComponent {
 
   profile: Profile;
   category: Category[];
-
+  hasFailed: boolean;
  
   constructor(private route: ActivatedRoute, private router: Router, private profileService: ProfileService) {
     this.profile = new Profile();
+    this.hasFailed = false;
   }
  
   onSubmit() {
-    this.profileService.save(this.profile).subscribe(result => this.gotoHome());
-  }
+    this.profileService.save(this.profile).subscribe(
+      result => this.gotoHome(),
+      error => { this.hasFailed = true }
+    )}
  
   gotoHome() {
     this.router.navigate(['/home']);
