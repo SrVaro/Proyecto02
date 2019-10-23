@@ -126,4 +126,19 @@ public class ProfileRepositoryCustomImpl implements ProfileRepositoryCustom {
 
 		return em.createNativeQuery(hql, Profile.class).setParameter(1, actualUserId).getResultList();
 	}
+	
+	/**
+	 * @author MJ
+	 * 
+	 */
+	@Override
+	@SuppressWarnings("unchecked")
+	public List<Profile> getMatchesList(int actualUserId) {
+
+		String hql = "SELECT P.* FROM profiles P " + " WHERE P.id_profile IN ( "
+				+ "	SELECT M.id_profile2 FROM profiles P " + "	JOIN matches M "
+				+ "	ON M.id_profile1 = P.id_profile " + "	WHERE P.id_profile = ?) ";
+
+		return em.createNativeQuery(hql, Profile.class).setParameter(1, actualUserId).getResultList();
+	}
 }
