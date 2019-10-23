@@ -20,7 +20,6 @@ import com.grupo01.lucatinder.exception.ProfileNotFoundException;
 import com.grupo01.lucatinder.models.Profile;
 import com.grupo01.lucatinder.services.ProfileService;
 
-
 @RestController
 @RequestMapping("/rest/profile")
 public class ProfileControllerREST {
@@ -89,15 +88,26 @@ public class ProfileControllerREST {
 		return profileServ.getContactList(actualUserID);
 
 	}
+
 	@DeleteMapping("/delete")
 	void delete() {
 		profileServ.deleteProfile(actualUserID);
-	}	
-	
+	}
+
 	@GetMapping("/myprofile")
 	public Optional<Profile> ShowProfile() {
 		logger.info("--listando contactos");
 		return profileServ.getProfileId(actualUserID);
-
 	}
+
+	/**
+	 * @author MJ
+	 */
+
+	@GetMapping("/matches")
+	public List<Profile> getMatches() {
+		logger.info("--listando matches");
+		return profileServ.getMatchesList(actualUserID);
+	}
+
 }
