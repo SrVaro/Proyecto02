@@ -142,10 +142,6 @@ public class LucatinderApplicationTests {
 		assertEquals(p.getName(), profileService.getProfile(p.getName()).get().getName());
 	}
 
-<<<<<<< HEAD
-
-=======
->>>>>>> master
 	/**
 	 * @author MC
 	 */
@@ -181,28 +177,6 @@ public class LucatinderApplicationTests {
 		} catch (Throwable e) {
 			System.out.println("Dont work");
 		}
-	}
-
-
-	@BeforeClass
-	public static void onceExecutedBeforeAll() {
-		logger.info("@BeforeClass: Al inicio de las pruebas");
-	}
-
-	@Before
-	public void executedBeforeEach() {
-		profileRepository.deleteAll();
-		logger.info("@Before: Antes de cada prueba");
-	}
-
-	@AfterClass
-	public static void onceExecutedAfterAll() {
-		logger.info("@AfterClass: Al final de las pruebas");
-	}
-
-	@After
-	public void executedAfterEach() {
-		logger.info("@After: Despues de cada prueba");
 	}
 	
 	@Test
