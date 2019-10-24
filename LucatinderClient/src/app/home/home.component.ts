@@ -9,7 +9,7 @@ import {ProfileService} from '../profile.service';
 })
 export class HomeComponent implements OnInit {
 
-
+  value = 0;
   profiles: Profile[];
 
   constructor(private profileService: ProfileService) { }
@@ -21,5 +21,11 @@ export class HomeComponent implements OnInit {
     });
   }
 
+  filter(value: number){
+    this.profiles = this.profiles.filter(function(number) {
+      return number.age > value;
+    });
+    
+  }
 
 }

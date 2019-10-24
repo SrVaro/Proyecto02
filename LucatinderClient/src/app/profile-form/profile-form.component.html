@@ -10,6 +10,11 @@
 <div class="container" style="margin-top:20px;">
   <form (ngSubmit)="onSubmit()" #profileForm="ngForm">
     <div class="form-group">
+      <input hidden type="number" [(ngModel)]="profile.id_profile" 
+        class="form-control" id="id" name="id" placeholder="Enter your id"
+        required #id="ngModel">
+    </div>
+    <div class="form-group">
       <label for="name">Name</label>
       <input type="text" [(ngModel)]="profile.name" 
         class="form-control" id="name" name="name" placeholder="Enter your name"
@@ -54,12 +59,6 @@
         <input type="number" [(ngModel)]="profile.desired_age_min"
           class="form-control" id="desired_age_min" name="desired_age_min" placeholder="Enter your desired min age"
           required #age="ngModel">
-    </div>
-    <div class="form-group">
-        <label for="likes">Likes</label>
-        <input type="text" [(ngModel)]="profile.likes" 
-            class="form-control" id="likes" name="likes" placeholder="Enter your likes"
-            required #likes="ngModel">
     </div>
     <div class="form-group">
         <label for="image">Image</label>

@@ -12,6 +12,7 @@ import { MatchesComponent } from './matches/matches.component';
 const routes: Routes = [
   // { path: 'kittys', component: KittyListComponent },
   { path: 'register', component: ProfileFormComponent },
+  { path: "register/:id", component: ProfileFormComponent },
   { path: 'login', component: LoginComponent },
   { path: 'home', component: HomeComponent},
   { path: 'profile', component: UserProfileComponent},

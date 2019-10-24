@@ -9,7 +9,7 @@ import { Category } from '../category';
   templateUrl: './profile-form.component.html',
   styleUrls: ['./profile-form.component.css']
 })
-export class ProfileFormComponent {
+export class ProfileFormComponent implements OnInit{
 
   profile: Profile;
   category: Category[];
@@ -18,6 +18,13 @@ export class ProfileFormComponent {
   constructor(private route: ActivatedRoute, private router: Router, private profileService: ProfileService) {
     this.profile = new Profile();
     this.hasFailed = false;
+  }
+
+  ngOnInit() {
+    console.log(this.route.snapshot.paramMap.get("id"));
+    if(this.route.snapshot.paramMap.get("id") != null){
+      this.profileService.getMyProfile().subscribe(data => this.profile = data);
+    }
   }
  
   onSubmit() {
