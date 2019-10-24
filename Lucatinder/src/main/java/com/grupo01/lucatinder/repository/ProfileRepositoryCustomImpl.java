@@ -46,15 +46,35 @@ public class ProfileRepositoryCustomImpl implements ProfileRepositoryCustom {
 	@Override
 	@SuppressWarnings("unchecked")
 	public List<Profile> getProfileSelection(int actualUserId) {
+		
+		Profile p = em.find(Profile.class, actualUserId);
+		
+		String hql = "SELECT P.* " + 
+				"FROM profiles P " + 
+				"WHERE " + 
+				"P.gender = ? " + 
+				"AND " + 
+				"P.age BETWEEN ? AND ? " + 
+				"AND " + 
+				"P.id_profile != ? " + 
+				"AND P.id_profile NOT IN ( " + 
+				"	SELECT C.id_profile_liked " + 
+				"    FROM contacts C " + 
+				"    JOIN profiles P ON P.id_profile = C.id_profile " + 
+				"    WHERE P.id_profile = ?) " + 
+				"AND P.id_profile NOT IN ( " + 
+				"	SELECT d.id_profile_disliked " + 
+				"    FROM discards D JOIN profiles P ON P.id_profile = D.id_profile " + 
+				"    WHERE P.id_profile = ?) ";
 
-		String hql = "SELECT P.* " + "FROM profiles P " + "WHERE P.id_profile != ? " + "AND P.id_profile NOT IN ( "
-				+ "	SELECT C.id_profile_liked " + "    FROM contacts C " + "    JOIN profiles P "
-				+ "	ON P.id_profile = C.id_profile " + "    WHERE P.id_profile = ?) " + "AND P.id_profile NOT IN ( "
-				+ "	SELECT d.id_profile_disliked " + "    FROM discards D " + "    JOIN profiles P "
-				+ "	ON P.id_profile = D.id_profile " + "    WHERE P.id_profile = ?) ";
-
-		return em.createNativeQuery(hql, Profile.class).setParameter(1, actualUserId).setParameter(2, actualUserId)
-				.setParameter(3, actualUserId).getResultList();
+		return em.createNativeQuery(hql, Profile.class)
+				.setParameter(1, p.getDesired_gender())
+				.setParameter(2, p.getDesired_age_min())
+				.setParameter(3, p.getDesired_age_max())
+				.setParameter(4, actualUserId)
+				.setParameter(5, actualUserId)
+				.setParameter(6, actualUserId)
+				.getResultList();
 
 		
 	}

@@ -112,7 +112,6 @@ public class ProfileControllerREST {
 		return profileServ.getDiscardList(actualUserID);
 
 	}
-	
 
 	@DeleteMapping("/delete")
 	public void delete() {

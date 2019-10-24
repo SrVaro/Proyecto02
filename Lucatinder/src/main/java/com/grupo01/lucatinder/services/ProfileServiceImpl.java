@@ -55,7 +55,7 @@ public class ProfileServiceImpl implements ProfileService {
 
 		List<Profile> lp = profileRep.getProfileSelection(actualUserId);
 
-		if (lp.size() < 20) {
+		if (profileRep.findAll().size() < 20) {
 			for (int i = 0; i < 20 - lp.size(); i++) {
 				Faker faker = new Faker();
 				profileRep.save(new Profile(0, faker.name().firstName(), new Random().nextBoolean(),

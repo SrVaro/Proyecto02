@@ -28,7 +28,7 @@ export class UserProfileComponent implements OnInit{
   }
 
   gotoHome() {
-    this.router.navigate(['/home']);
+    this.router.navigate(['/register']);
   }
 
 }
