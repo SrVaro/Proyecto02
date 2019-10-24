@@ -1,12 +1,9 @@
 package com.grupo01.lucatinder;
 
 import static org.junit.Assert.assertEquals;
+import static org.junit.Assert.assertNull;
 import static org.junit.Assert.assertNotEquals;
-
-import java.util.Optional;
-
 import java.util.ArrayList;
-
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 import org.junit.After;
@@ -20,7 +17,6 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.test.context.ActiveProfiles;
 import org.springframework.test.context.junit4.SpringRunner;
-
 import com.grupo01.lucatinder.models.Profile;
 import com.grupo01.lucatinder.repository.ProfileRepository;
 import com.grupo01.lucatinder.services.ProfileService;
@@ -44,6 +40,33 @@ public class LucatinderApplicationTests {
 	@Autowired
 	private ProfileRepository profileRepository;
 	
+	@BeforeClass
+	public static void onceExecutedBeforeAll() {
+		logger.info("@BeforeClass: Al inicio de las pruebas");
+	}
+
+	@Before
+	public void executedBeforeEach() {
+		profileRepository.deleteAll();
+		logger.info("@Before: Antes de cada prueba");
+	}
+
+	@AfterClass
+	public static void onceExecutedAfterAll() {
+		logger.info("@AfterClass: Al final de las pruebas");
+	}
+
+	@After
+	public void executedAfterEach() {
+		logger.info("@After: Despues de cada prueba");
+	}
+	
+	@Ignore
+	//Se usa para que no tengas que cometar un metodo, en vez de eso que se ignore y no se ejecute
+	public void executionIgnored() {
+		logger.info("@Ignore: This Test is ignored");
+	}
+	
 	/*
 	 * Inicializamos
 	 */
@@ -55,6 +78,9 @@ public class LucatinderApplicationTests {
 		}
 	}
 
+	/**
+	 * @author AL
+	 */
 	@Test
 	public void getSelectionTest() {
 		
@@ -92,7 +118,6 @@ public class LucatinderApplicationTests {
 	 * @author AR
 	 */
 	@Test
-	
 	public void testAddProfile() {
 		logger.info("Prueba para comprobar que se ha añadido un perfil");
 		
@@ -117,13 +142,15 @@ public class LucatinderApplicationTests {
 		assertEquals(p.getName(), profileService.getProfile(p.getName()).get().getName());
 	}
 
+<<<<<<< HEAD
 
+=======
+>>>>>>> master
 	/**
 	 * @author MC
 	 */
 	
 	@Test
-	
 	public void testEditProfile() {
 		logger.info("Prueba para comprobar que se ha editado un perfil");
 		
@@ -178,9 +205,30 @@ public class LucatinderApplicationTests {
 		logger.info("@After: Despues de cada prueba");
 	}
 	
-	@Ignore
-	//Se usa para que no tengas que cometar un metodo, en vez de eso que se ignore y no se ejecute
-	public void executionIgnored() {
-		logger.info("@Ignore: This Test is ignored");
+	@Test
+	public void testDeleteProfile() {
+		logger.info("Prueba para comprobar que se ha borrado un perfil");
+		
+		int cantidadInicial;
+		int cantidadFinal;
+		
+			Profile p = profileRepository.save(new Profile("prueba2", false, 24, "asdasd", true, 20, 30));
+		
+			//Paso 1. Miro cuantos elementos hay
+			cantidadInicial = profileRepository.findAll().size();
+			logger.info("Numero de perfiles iniciales: " + cantidadInicial);
+			
+			//Paso 2. Borro un perfil escogido anteriormente para probar
+			profileService.deleteProfile(p.getId_profile());
+			
+			//Paso 3. Compruebo que hay uno menos
+			cantidadFinal = profileRepository.findAll().size();
+			logger.info("Numero de perfiles finales: " + cantidadFinal);
+			
+			//Paso 4. Compruebo que se ha eliminado
+			assertEquals(cantidadInicial - 1, cantidadFinal);
+			assertNull(profileService.getProfileId(p.getId_profile()).orElse(null));
+		
 	}
+	
 }

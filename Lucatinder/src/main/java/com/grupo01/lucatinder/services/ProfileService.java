@@ -40,7 +40,7 @@ public interface ProfileService {
 	public Optional<Profile> getProfileId(int id);
 
 	public List<Profile> getMatchesList(int actualUserId);
-	public BCryptPasswordEncoder codificadorClave();
 	
+	public BCryptPasswordEncoder codificadorClave();
 
 }

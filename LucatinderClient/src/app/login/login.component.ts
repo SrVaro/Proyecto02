@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, Output, EventEmitter } from '@angular/core';
 import { Router } from '@angular/router';
 import { ProfileService } from '../profile.service';
 
@@ -10,15 +10,18 @@ import { ProfileService } from '../profile.service';
 export class LoginComponent {
 
   hasFailed: boolean;
-
   constructor(private router: Router, private profileService: ProfileService) {
     this.hasFailed = false;
   }
 
   login(form){
     this.profileService.login(form.value.name).subscribe(
-      result => this.router.navigate(['/home']),
+      result => this.gotoHome(),
       error => { this.hasFailed = true }
       );
+  }
+
+  gotoHome(){
+    this.router.navigate(['/home'])
   }
 }

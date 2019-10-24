@@ -160,9 +160,18 @@ public class ProfileControllerMVC {
 			} else {
 				return "redirect:/mvc/profile/new";
 			}
+		}else {
+			
+			 Profile p = profileServ.addProfile(profile);
+			 
+			 if (p != null) {
+					this.actualUserID = p.getId_profile();
+					return "redirect:/mvc/profile/home";
+				} else {
+					return "redirect:/mvc/profile/new";
+				}
 		}
 		
-		return "redirect:/mvc/profile/new";
 	}
 
 	/**
@@ -222,6 +231,7 @@ public class ProfileControllerMVC {
 	@RequestMapping(value = "/edit", method = RequestMethod.GET)
 	public String updateProfile(ModelMap model) {
 		logger.info("-- en update");
+		model.addAttribute("categorys", categoryServ.getAllCategorys());
 		model.addAttribute("profile", profileServ.getProfileId(actualUserID));
 		return "profileForm";
 	}

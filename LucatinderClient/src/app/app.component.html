@@ -1,29 +1,35 @@
-<div class="container">
-  <nav class="navbar navbar-expand-lg navbar-light bg-light">
-    <a class="navbar-brand" href="#">Navbar</a>
-    <button class="navbar-toggler" type="button" data-toggle="collapse"
-      data-target="#navbarSupportedContent"
-      aria-controls="navbarSupportedContent" aria-expanded="false"
-      aria-label="Toggle navigation">
-      <span class="navbar-toggler-icon"></span>
-    </button>
+
+<mat-sidenav-container class="example-container">
+  <mat-sidenav #sidenav mode="side" [(opened)]="opened" (opened)="events.push('open!')"
+                (closed)="events.push('close!')">
+      <mat-nav-list>
   
-    <div class="collapse navbar-collapse" id="navbarSupportedContent">
-      <ul class="navbar-nav mr-auto">
-          <li class="list-inline-item"><a routerLink="/login" class="btn btn-info" >Login</a></li>
-          <li class="list-inline-item"><a routerLink="/register" class="btn btn-info" >Register</a></li>
-          <li class="list-inline-item"><a routerLink="/home" class="btn btn-info">Home</a></li>
-          <li class="list-inline-item"><a routerLink="/contacts" class="btn btn-info">Contacts</a></li>
-          <li class="list-inline-item"><a routerLink="/discards" class="btn btn-info">Discards</a></li>
-          <li class="list-inline-item"><a routerLink="/matches" class="btn btn-info">Matches</a></li>
-          <li class="list-inline-item"><a routerLink="/profile" class="btn btn-info">My profile</a></li>
-      </ul>
-      <form class="form-inline my-2 my-lg-0">
-        <input class="form-control mr-sm-2" type="search"
-          placeholder="Search" aria-label="Search">
-        <button class="btn btn-outline-success my-2 my-sm-0" type="submit">Search</button>
-      </form>
-    </div>
-  </nav>
-  <router-outlet></router-outlet>
-</div>
+        <a mat-list-item [routerLink]="'/login'"> Login </a>
+        <a mat-list-item [routerLink]="'/register'"> Create Account </a>
+        <a mat-list-item [routerLink]="'/home'"> Home </a>
+        <a mat-list-item [routerLink]="'/contacts'"> Contacts</a>
+        <a mat-list-item [routerLink]="'/discards'"> Discards </a>
+        <a mat-list-item [routerLink]="'/matches'"> Matches</a>
+        <a mat-list-item [routerLink]="'/profile'"> My profile </a>
+        <a mat-list-item (click)="sidenav.toggle()" mat-list-item>Close</a>
+  
+      </mat-nav-list>
+  </mat-sidenav>
+
+  <mat-sidenav-content>
+      <mat-toolbar color="primary">
+          <mat-toolbar-row>
+            <button mat-icon-button>
+              <mat-icon (click)="sidenav.toggle()">menu</mat-icon>
+            </button>
+            <h1>LucaTinder</h1>
+            <span class="menu-spacer"></span>
+          </mat-toolbar-row>
+        </mat-toolbar>
+    <router-outlet> </router-outlet>
+  </mat-sidenav-content>
+</mat-sidenav-container>
+
+
+
+

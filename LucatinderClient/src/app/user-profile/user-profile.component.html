@@ -1,63 +1,26 @@
-<!DOCTYPE html>
-    <html lang="en">
+<mat-toolbar color="primary">
+    <mat-toolbar-row>
+        <span class="menu-spacer"></span>
+        <div>
 
-    <head>
-        <meta charset="UTF-8">
-        <title>Document</title>
-    </head>
-
-    <body>
-
-  
-
-
-
-        <div class="card my-5">
-            <div class="card-body">
-                <table class="table table-bordered table-striped">
-                    <tr>
-                        <td>
-                            <img [src]= " profile.image  " *ngIf="profile"/>
-                        </td>
-                    </tr>
-                    <tr>
-                        <td>Nombre:</td>
-                        <td>{{ profile?.name }}</td>
-                    </tr>
-                    <tr>
-                        <td>Edad:</td>
-                        <td>{{ profile?.age }}</td>
-                    </tr>
-                    <tr>
-                        <td>Genero:</td>
-                        <td>{{ profile?.gender }}</td>}
-                    </tr>
-                    <tr>
-                        <td>Descripcion:</td>
-                        <td>{{ profile?.description }}</td>
-                    </tr>
-                    <tr>
-                        <td>Genero deseado:</td>
-                        <td>{{ profile?.desired_gender }}</td>
-                    </tr>
-                    <tr>
-                        <td>Edad máxima deseada:</td>
-                        <td>{{ profile?.desired_age_max }}</td>
-                    </tr>
-                    <tr>
-                        <td>Edad mínima deseada:</td>
-                        <td>{{ profile?.desired_age_min }}</td>
-                    </tr>
-                    <tr>
-                        <td><button (click)="router.navigate(['/register']);">Editar</button></td>
-                        <td><button (click)="delete()">Eliminar</button></td>
-                    </tr>
-
-                </table>
-            </div>
         </div>
+    </mat-toolbar-row>
+</mat-toolbar>
+<div class="container" style="margin-top: 50px;">
+    <mat-list>
+        <h3 mat-subheader>Usuario</h3>
+        <mat-list-item  *ngIf="profile">
+            <img [src]="profile.image" *ngIf="profile" style="width: 300px; height: 300px;"/>
+            <h4 mat-line>{{ profile?.name }}</h4>
+            <p mat-line> {{ profile?.age }} </p>
+            <p mat-line> {{ profile?.gender }} </p>
+            <p mat-line> {{ profile?.description }} </p>
+            <p mat-line> {{ profile?.desired_gender }} </p>
+            <p mat-line> {{ profile?.desired_age_max }} </p>
+            <p mat-line> {{ profile?.desired_age_min }} </p>
+        </mat-list-item>
+    </mat-list>
+    <button mat-raised-button color="primary" (click)="router.navigate(['/register/1']);">Editar</button> 
+    <button mat-raised-button color="primary" (click)="delete()"  style="margin-left: 20px;">Eliminar</button>
+</div>
 
-
-    </body>
-
-    </html>

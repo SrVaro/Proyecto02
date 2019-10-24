@@ -1,2 +1,17 @@
-<p>home works!</p>
+<mat-toolbar color="primary">
+    <mat-toolbar-row>
+        <span class="menu-spacer"></span>
+        <div>
+            <mat-slider
+            class="example-margin"
+            [max]="100"
+            [min]="0"
+            [thumbLabel]="true"
+            [(ngModel)]="value">
+            </mat-slider>
+
+            <button mat-raised-button color="secundary" (click)="filter(value)"  style="margin-left: 20px;">Aplicar</button>
+        </div>
+    </mat-toolbar-row>
+</mat-toolbar>
 <app-profile-list [profiles]='profiles' [home]='true'> </app-profile-list>
