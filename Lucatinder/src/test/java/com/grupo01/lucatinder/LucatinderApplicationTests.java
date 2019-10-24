@@ -3,9 +3,7 @@ package com.grupo01.lucatinder;
 import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertNull;
 import static org.junit.Assert.assertNotEquals;
-
 import java.util.ArrayList;
-import java.util.Optional;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 import org.junit.After;
@@ -84,7 +82,6 @@ public class LucatinderApplicationTests {
 	 * @author AL
 	 */
 	@Test
-	@Ignore
 	public void getSelectionTest() {
 		
 		profileRepository.deleteAll();
@@ -121,7 +118,6 @@ public class LucatinderApplicationTests {
 	 * @author AR
 	 */
 	@Test
-	@Ignore
 	public void testAddProfile() {
 		logger.info("Prueba para comprobar que se ha añadido un perfil");
 		
@@ -151,7 +147,6 @@ public class LucatinderApplicationTests {
 	 */
 	
 	@Test
-	
 	public void testEditProfile() {
 		logger.info("Prueba para comprobar que se ha editado un perfil");
 		
@@ -173,13 +168,8 @@ public class LucatinderApplicationTests {
 		assertEquals(edit,nuevo);
 		assertNotEquals(p,nuevo);
 	}
-	/*
-	 * Inicializamos
->>>>>>> MC
-	 */
 	
 	@Test
-	
 	public void testDeleteProfile() {
 		logger.info("Prueba para comprobar que se ha borrado un perfil");
 		
