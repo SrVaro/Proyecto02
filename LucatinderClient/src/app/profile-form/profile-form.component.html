@@ -12,7 +12,7 @@
     <div class="form-group">
       <input hidden type="number" [(ngModel)]="profile.id_profile" 
         class="form-control" id="id" name="id" placeholder="Enter your id"
-        required #id="ngModel">
+        #id="ngModel">
     </div>
     <div class="form-group">
       <label for="name">Name</label>
@@ -24,6 +24,12 @@
     <div class="sing-in-error" *ngIf ="hasFailed">
       Este usuario ya esta Registrado
     </div>
+    <div class="form-group">
+        <label for="password">Password</label>
+        <input type="password" [(ngModel)]="profile.password" 
+          class="form-control" id="image" name="image" placeholder="Enter your password"
+          required #image="ngModel">
+      </div>
     <div class="form-group">
         <label for="name">Gender</label>
         <br>
@@ -49,13 +55,13 @@
         <input type="radio" value="false" name="gender_desired" [(ngModel)]="profile.desired_gender" required> Female 
     </div>
     <div class="form-group">
-        <label for="age">Age</label>
+        <label for="age">Max Desired Age</label>
         <input type="number" [(ngModel)]="profile.desired_age_max" 
           class="form-control" id="desired_age_max" name="desired_age_max" placeholder="Enter your desired max age"
           required #age="ngModel">
     </div>
     <div class="form-group">
-        <label for="age">Age</label>
+        <label for="age">Min Desired Age</label>
         <input type="number" [(ngModel)]="profile.desired_age_min"
           class="form-control" id="desired_age_min" name="desired_age_min" placeholder="Enter your desired min age"
           required #age="ngModel">
@@ -66,6 +72,7 @@
           class="form-control" id="image" name="image" placeholder="Enter your image"
           required #image="ngModel">
       </div>
+
     <button type="submit" [disabled]="!profileForm.form.valid" class="btn btn-info">Submit</button>
   </form>
 </div>

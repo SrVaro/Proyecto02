@@ -42,7 +42,13 @@ public class ProfileControllerMVC {
 	private CategoryService categoryServ;
 	
 
+	@Autowired
+	private BCryptPasswordEncoder codificador;
 	
+	@Bean 
+	public BCryptPasswordEncoder codificadorClave() {
+		return new BCryptPasswordEncoder();
+	}
 	
 	
 	public ProfileControllerMVC() {
@@ -81,7 +87,7 @@ public class ProfileControllerMVC {
 		logger.info("-- Comprobando si el usuario existe --");
 		String link = "login";
 		Profile p = profileServ.getProfile(profile.getName()).orElse(null);
-		if (p != null) {
+		if (p != null && codificador.matches(profile.getPassword(), p.getPassword())) {
 			link = "redirect:/mvc/profile/home";
 			this.actualUserID = p.getId_profile();
 		}

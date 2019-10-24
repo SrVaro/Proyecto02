@@ -38,23 +38,20 @@ public class ProfileServiceImpl implements ProfileService {
 	private ProfileRepository profileRep;
 
 	@Autowired
-	private BCryptPasswordEncoder codificador;	
-	@Bean
-	@Override 
+	private BCryptPasswordEncoder codificador;
+	
+	@Bean 
 	public BCryptPasswordEncoder codificadorClave() {
 		return new BCryptPasswordEncoder();
 	}
+	
 	ProfileServiceImpl() {
-
 	}
 
 	@Override
 	public Profile addProfile(Profile p) {
-		
-		
-		String prueba=p.getPassword();
-	    logger.info(prueba);
-	 String codifiedPassword=codificador.encode(prueba) ;
+
+	    String codifiedPassword=codificador.encode(p.getPassword());
 	    logger.info("password codificado");
 	    logger.info(codifiedPassword);
 	    p.setPassword(codifiedPassword);

@@ -47,6 +47,7 @@ public class WebSecConfig extends WebSecurityConfigurerAdapter {
                 .authorizeRequests()
                 .antMatchers("/mvc/profile/index").permitAll()
                 .and().formLogin()
+                .defaultSuccessUrl("/mvc/profile/home", true)
                 .and().logout();
     	
 	

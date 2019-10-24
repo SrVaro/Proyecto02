@@ -11,6 +11,7 @@ export class HomeComponent implements OnInit {
 
   value = 0;
   profiles: Profile[];
+  aux: Profile[];
 
   constructor(private profileService: ProfileService) { }
 
@@ -18,11 +19,12 @@ export class HomeComponent implements OnInit {
     console.log("--- Inside ProfileListComponent");
     this.profileService.getSelection().subscribe(data => {
       this.profiles = data;
+      this.aux = data;
     });
   }
 
   filter(value: number){
-    this.profiles = this.profiles.filter(function(number) {
+    this.profiles = this.aux.filter(function(number) {
       return number.age > value;
     });
     

@@ -11,13 +11,15 @@
         <h3 mat-subheader>Usuario</h3>
         <mat-list-item  *ngIf="profile">
             <img [src]="profile.image" *ngIf="profile" style="width: 300px; height: 300px;"/>
-            <h4 mat-line>{{ profile?.name }}</h4>
-            <p mat-line> {{ profile?.age }} </p>
-            <p mat-line> {{ profile?.gender }} </p>
-            <p mat-line> {{ profile?.description }} </p>
-            <p mat-line> {{ profile?.desired_gender }} </p>
-            <p mat-line> {{ profile?.desired_age_max }} </p>
-            <p mat-line> {{ profile?.desired_age_min }} </p>
+            <h4 mat-line>Nombre: {{ profile?.name }}</h4>
+            <p mat-line>Edad: {{ profile?.age }} </p>
+            <p *ngIf="profile?.desired_gender" mat-line>Genero: Hombre </p>
+            <p *ngIf="!profile?.desired_gender" mat-line>Genero: Mujer </p>
+            <p mat-line>Descripcion: {{ profile?.description }} </p>
+            <p *ngIf="profile?.desired_gender" mat-line>Genero deseado: Hombre </p>
+            <p *ngIf="!profile?.desired_gender" mat-line>Genero deseado: Mujer </p>
+            <p mat-line>Edad deseada maxima: {{ profile?.desired_age_max }} </p>
+            <p mat-line>Edad deseada minima: {{ profile?.desired_age_min }} </p>
         </mat-list-item>
     </mat-list>
     <button mat-raised-button color="primary" (click)="router.navigate(['/register/1']);">Editar</button> 

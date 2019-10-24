@@ -15,8 +15,8 @@ export class ProfileService {
     this.lucatinderUrl = 'http://localhost:8080/rest/profile/';
   }
 
-  public login(name: String) {
-    return this.http.get<Profile>(this.lucatinderUrl + 'login/' + name);
+  public login(name: String, pass: String) {
+    return this.http.get<Profile>(this.lucatinderUrl + 'login/' + name + '/' + pass);
   }
 
   public save(profile: Profile) {

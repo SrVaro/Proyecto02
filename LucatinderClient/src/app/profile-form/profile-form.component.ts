@@ -25,6 +25,8 @@ export class ProfileFormComponent implements OnInit{
     if(this.route.snapshot.paramMap.get("id") != null){
       this.profileService.getMyProfile().subscribe(data => this.profile = data);
     }
+
+
   }
  
   onSubmit() {

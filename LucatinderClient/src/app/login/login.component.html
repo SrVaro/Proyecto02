@@ -13,6 +13,9 @@
       <mat-form-field class="example-full-width">
         <input matInput name="name" id="name" type="text" placeholder="Nickname" required ngModel>
       </mat-form-field>
+      <mat-form-field class="example-full-width">
+          <input matInput name="pass" id="pass" type="text" placeholder="Password" required ngModel>
+      </mat-form-field>
       <!--Mensaje Error-->
       <div class="sign-in-error" *ngIf="hasFailed">
         El usuario no existe

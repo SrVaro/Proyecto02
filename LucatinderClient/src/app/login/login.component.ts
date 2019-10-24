@@ -15,8 +15,9 @@ export class LoginComponent {
   }
 
   login(form){
-    this.profileService.login(form.value.name).subscribe(
-      result => this.gotoHome(),
+    this.profileService.login(form.value.name, form.value.pass).subscribe(
+      result => {this.gotoHome();
+                  console.log(form.value.name + form.value.pass)},
       error => { this.hasFailed = true }
       );
   }

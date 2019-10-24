@@ -6,8 +6,10 @@ import java.net.URI;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.context.annotation.Bean;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
+import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
@@ -27,6 +29,14 @@ public class ProfileControllerREST {
 
 	@Autowired
 	private ProfileService profileServ;
+	
+	@Autowired
+	private BCryptPasswordEncoder codificador;	
+	
+	@Bean 
+	public BCryptPasswordEncoder codificadorClave() {
+		return new BCryptPasswordEncoder();
+	}
 
 	private int actualUserID;
 
@@ -69,12 +79,14 @@ public class ProfileControllerREST {
 	 * 
 	 * @author AR
 	 */
-	@GetMapping("/login/{name}")
-	public Profile loginUser(@PathVariable String name) {
+	@GetMapping("/login/{name}/{pass}")
+	public Profile loginUser(@PathVariable("name") String name, @PathVariable("pass") String pass) {
 		logger.info("-- Comprobando si el usuario existe --");
 		Profile p = profileServ.getProfile(name).orElseThrow(ProfileNotFoundException::new);
-		if (p != null) {
+		if (p != null && codificador.matches(pass, p.getPassword())) {
 			this.actualUserID = p.getId_profile();
+		}else {
+			throw new ProfileNotFoundException();
 		}
 		return p;
 	}
