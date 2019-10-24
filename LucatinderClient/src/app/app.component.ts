@@ -8,4 +8,7 @@ import { Component, Input, Output, EventEmitter } from '@angular/core';
 export class AppComponent {
   title = 'LucatinderClient';
 
+  events: string[] = [];
+  opened: boolean;
+
 }

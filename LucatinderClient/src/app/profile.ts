@@ -8,4 +8,5 @@ export class Profile {
 	desired_age_max: number;
 	desired_age_min: number;
 	image: String;
+	password: String;
 }

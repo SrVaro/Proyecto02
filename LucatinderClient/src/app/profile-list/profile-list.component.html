@@ -1,18 +1,21 @@
-<div *ngFor="let profile of profiles">
-    <div class="card" style="text-align: center; float:left; margin: 20px;">
-        <img class="card-img-top" [src]="profile.image" style="height: 200px; width: 200px; ">  
-        <div class="card-body">
-            <div class="card-title">
-                <h4>{{ profile.name }}</h4>
-            </div>
 
-            <div class="card-text">
-                <a>{{ profile.age }}</a></div>
-                <div class="card-text"> <a>{{ profile.gender }}</a> </div>
-                    <div class="card-text"> <a>{{ profile.description }}</a> </div>
-            
-            <a *ngIf="home"><button (click)="like(profile)">Like!</button> </a>
-            <a *ngIf="home"><button (click)="dislike(profile)">Dislike!</button> </a>
-        </div>
-    </div>
+<div class='md-padding' layout="row" layout-wrap>
+    <mat-card class="example-card" *ngFor="let profile of profiles">
+        <mat-card-header>
+            <div mat-card-avatar class="example-header-image"></div>
+            <mat-card-title>{{ profile.name }}</mat-card-title>
+            <mat-card-subtitle>{{ profile.gender }}</mat-card-subtitle>
+            <mat-card-subtitle>{{ profile.age }}</mat-card-subtitle>
+        </mat-card-header>
+        <img mat-card-image [src]="profile.image" alt="Photo of a Shiba Inu" style="height: 300px; width: 300px;">
+        <mat-card-content>
+            <p>
+                {{ profile.description }}
+            </p>
+        </mat-card-content>
+        <mat-card-actions>
+            <button mat-button (click)="like(profile)">LIKE</button>
+            <button mat-button (click)="dislike(profile)">SHARE</button>
+        </mat-card-actions>
+    </mat-card>
 </div>
