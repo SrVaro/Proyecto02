@@ -3,14 +3,22 @@ package com.grupo01.lucatinder.services;
 import java.util.Optional;
 import java.util.Random;
 import java.io.IOException;
+import java.util.ArrayList;
 import java.util.List;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.context.annotation.Bean;
 import org.springframework.http.HttpEntity;
 import org.springframework.http.HttpHeaders;
 import org.springframework.http.HttpMethod;
 import org.springframework.http.ResponseEntity;
+import org.springframework.security.core.GrantedAuthority;
+import org.springframework.security.core.authority.SimpleGrantedAuthority;
+import org.springframework.security.core.userdetails.User;
+import org.springframework.security.core.userdetails.UserDetails;
+import org.springframework.security.core.userdetails.UsernameNotFoundException;
+import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Repository;
 import org.springframework.web.client.RestTemplate;
 import com.fasterxml.jackson.databind.JsonNode;
@@ -18,6 +26,7 @@ import com.fasterxml.jackson.databind.ObjectMapper;
 import com.github.javafaker.Faker;
 import com.grupo01.lucatinder.models.Profile;
 import com.grupo01.lucatinder.repository.ProfileRepository;
+
 
 @Repository
 public class ProfileServiceImpl implements ProfileService {
@@ -28,12 +37,27 @@ public class ProfileServiceImpl implements ProfileService {
 	@Autowired
 	private ProfileRepository profileRep;
 
+	@Autowired
+	private BCryptPasswordEncoder codificador;	
+	@Bean
+	@Override 
+	public BCryptPasswordEncoder codificadorClave() {
+		return new BCryptPasswordEncoder();
+	}
 	ProfileServiceImpl() {
 
 	}
 
 	@Override
 	public Profile addProfile(Profile p) {
+		
+		
+		String prueba=p.getPassword();
+	    logger.info(prueba);
+	 String codifiedPassword=codificador.encode(prueba) ;
+	    logger.info("password codificado");
+	    logger.info(codifiedPassword);
+	    p.setPassword(codifiedPassword);
 		try {
 			p = profileRep.save(p);
 		} catch (Exception ex) {
@@ -138,4 +162,5 @@ public class ProfileServiceImpl implements ProfileService {
 	public List<Profile> getMatchesList(int actualUserId) {
 		return profileRep.getMatchesList(actualUserId);
 	}
+	
 }

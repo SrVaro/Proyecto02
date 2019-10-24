@@ -1,6 +1,10 @@
 package com.grupo01.lucatinder.services;
 
 import java.util.Optional;
+
+import org.springframework.security.core.userdetails.UserDetails;
+import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
+
 import java.util.List;
 
 /**
@@ -28,13 +32,15 @@ public interface ProfileService {
 	String getImage();
 
 	public void deleteProfile(int id);
-	
+
 	public List<Profile> getDiscardList(int actualUserId);
 
 	public void updateProfile(Profile profile);
 
 	public Optional<Profile> getProfileId(int id);
-	
+
 	public List<Profile> getMatchesList(int actualUserId);
+	public BCryptPasswordEncoder codificadorClave();
+	
 
 }

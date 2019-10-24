@@ -6,17 +6,22 @@ import javax.servlet.http.HttpServletRequest;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.context.annotation.Bean;
+import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import com.grupo01.lucatinder.services.CategoryService;
 import com.grupo01.lucatinder.services.ProfileService;
+
 import org.springframework.ui.Model;
 import org.springframework.ui.ModelMap;
 import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.GetMapping;
 import com.grupo01.lucatinder.models.Category;
 import com.grupo01.lucatinder.models.Profile;
+import com.grupo01.lucatinder.security.WebSecConfig;
+
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
@@ -35,7 +40,11 @@ public class ProfileControllerMVC {
 	
 	@Autowired
 	private CategoryService categoryServ;
+	
 
+	
+	
+	
 	public ProfileControllerMVC() {
 
 	}
@@ -134,8 +143,15 @@ public class ProfileControllerMVC {
 		            ListCategorys.add(category);
 		            profile.setCategory(ListCategorys);
 		        }
-		    }    
-		    
+		    }   
+		   /* String prueba=profile.getPassword();
+		    logger.info(prueba);
+		   String codifiedPassword=codificador.encode(prueba) ;
+		    logger.info("password codificado");
+		    logger.info(codifiedPassword);
+		    profile.setPassword(codifiedPassword);
+		    logger.info(profile.toString());	*/
+		    logger.info("prueba");
 		    Profile p = profileServ.addProfile(profile);
 		    
 		    if (p != null) {

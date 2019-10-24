@@ -7,6 +7,9 @@ import javax.persistence.Id;
 import javax.persistence.JoinTable;
 import javax.persistence.ManyToMany;
 import javax.persistence.Table;
+
+
+
 import javax.persistence.JoinColumn;
 
 /**
@@ -30,11 +33,14 @@ public class Profile {
 	private int desired_age_max;
 	private int desired_age_min;
 	private String image;
+	private String password;
     private List<Category> category;
-
+	
 	public Profile() {
+	
 	}
 
+	
 	public Profile(int id_profile, String name, boolean gender, int age, String description, boolean desired_gender,
 			int desired_age_max, int desired_age_min, String image) {
 		super();
@@ -47,6 +53,7 @@ public class Profile {
 		this.desired_age_max = desired_age_max;
 		this.desired_age_min = desired_age_min;
 		this.image = image;
+		
 	}
 
 	public Profile(String name, boolean gender, int age, String description, boolean desired_gender,
@@ -148,11 +155,20 @@ public class Profile {
 		this.image = image;
 	}
 
+	public String getPassword() {
+		return password;
+	}
+
+	public void setPassword(String password) {
+		this.password = password;
+	}
+
 	@Override
 	public String toString() {
 		return "Profile [id_profile=" + id_profile + ", name=" + name + ", gender=" + gender + ", age=" + age
 				+ ", description=" + description + ", desired_gender=" + desired_gender + ", desired_age_max="
-				+ desired_age_max + ", desired_age_min=" + desired_age_min + "]";
+				+ desired_age_max + ", desired_age_min=" + desired_age_min + ", image=" + image + ", password="
+				+ password + ", category=" + category + "]";
 	}
 
 }
